@@ -1,16 +1,5 @@
 function [ber_zf, ber_mmse] = spatial_multiplexing_linear(mod_order, snr_db_vec, num_packets, packet_len, rho)
 % SPATIAL_MULTIPLEXING_LINEAR Simulates 2x2 Spatial Multiplexing with ZF and MMSE detectors.
-%
-% Inputs:
-%   mod_order   - Modulation order (4 for QPSK, 16 for 16-QAM, etc.)
-%   snr_db_vec  - Vector of SNR values in dB (Es/N0)
-%   num_packets - Number of channel packets/frames
-%   packet_len  - Number of symbol vectors per frame (e.g. 1000)
-%   rho         - Spatial correlation coefficient
-%
-% Outputs:
-%   ber_zf   - BER vector using Zero-Forcing detection
-%   ber_mmse - BER vector using MMSE detection
 
 if nargin < 5, rho = 0; end
 if nargin < 4, packet_len = 1000; end
@@ -33,33 +22,22 @@ for s_idx = 1:length(snr_db_vec)
     total_bits = 0;
     
     for p = 1:num_packets
-        % Generate independent bits for Nt spatial streams
         tx_bits = randi([0, 1], Nt, packet_len * k);
         tx_syms = zeros(Nt, packet_len);
         for tx = 1:Nt
-            tx_syms(tx, :) = qammod(tx_bits(tx, :)', mod_order, 'InputType', 'bit', 'UnitAveragePower', true).';
+            tx_syms(tx, :) = modulate_qam(tx_bits(tx, :)', mod_order).';
         end
         
-        % Normalize transmit power per antenna: total power = 1
         X = tx_syms / sqrt(Nt);
-        
-        % Correlated Rayleigh channel matrix H (Nr x Nt)
         [H, ~, ~] = generate_correlated_channel(Nt, Nr, rho, rho, 1);
-        
-        % Complex AWGN noise matrix (Nr x packet_len)
         N = sqrt(noise_var / 2) * (randn(Nr, packet_len) + 1j * randn(Nr, packet_len));
-        
-        % Received signal: Y = H * X + N
         Y = H * X + N;
         
-        % --- 1. Zero-Forcing (ZF) Receiver ---
-        % W_zf = inv(H' * H) * H'
-        % Equalized signal: S_hat = sqrt(Nt) * W_zf * Y
+        % 1. Zero-Forcing (ZF) Receiver
         W_zf = pinv(H);
         S_hat_zf = sqrt(Nt) * (W_zf * Y);
         
-        % --- 2. MMSE Receiver ---
-        % W_mmse = inv(H' * H + (noise_var * Nt) * I) * H'
+        % 2. MMSE Receiver
         W_mmse = (H' * H + (noise_var * Nt) * eye(Nt)) \ H';
         S_hat_mmse = sqrt(Nt) * (W_mmse * Y);
         
@@ -67,8 +45,8 @@ for s_idx = 1:length(snr_db_vec)
         rx_bits_zf = zeros(Nt, packet_len * k);
         rx_bits_mmse = zeros(Nt, packet_len * k);
         for tx = 1:Nt
-            rx_bits_zf(tx, :) = qamdemod(S_hat_zf(tx, :)', mod_order, 'OutputType', 'bit', 'UnitAveragePower', true).';
-            rx_bits_mmse(tx, :) = qamdemod(S_hat_mmse(tx, :)', mod_order, 'OutputType', 'bit', 'UnitAveragePower', true).';
+            rx_bits_zf(tx, :) = demodulate_qam(S_hat_zf(tx, :)', mod_order).';
+            rx_bits_mmse(tx, :) = demodulate_qam(S_hat_mmse(tx, :)', mod_order).';
         end
         
         err_zf = err_zf + sum(sum(tx_bits ~= rx_bits_zf));

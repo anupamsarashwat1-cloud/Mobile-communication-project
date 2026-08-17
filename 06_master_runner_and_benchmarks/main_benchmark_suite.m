@@ -21,7 +21,7 @@ Nt = 2; Nr = 2;
 mod_order = 4; % QPSK (k = 2 bits/sym)
 k = log2(mod_order);
 snr_vec = 0:2:24;
-num_packets = 120;
+num_packets = 100;
 packet_len = 1000;
 rho = 0.3; % Moderate realistic spatial correlation
 
@@ -42,7 +42,7 @@ for s_idx = 1:length(snr_cap_vec)
     noise_var = P_total / (10^(snr_db/10));
     sum_wf = 0; sum_ep = 0; sum_siso = 0;
     
-    for trial = 1:2000
+    for trial = 1:1500
         [H, ~, ~] = generate_correlated_channel(Nt, Nr, rho, rho, 1);
         s = svd(H);
         sigma_sq = s.^2;
@@ -56,13 +56,13 @@ for s_idx = 1:length(snr_cap_vec)
         h_siso = (randn + 1j*randn)/sqrt(2);
         sum_siso = sum_siso + log2(1 + P_total*abs(h_siso)^2/noise_var);
     end
-    C_wf(s_idx) = sum_wf / 2000;
-    C_ep(s_idx) = sum_ep / 2000;
-    C_siso(s_idx) = sum_siso / 2000;
+    C_wf(s_idx) = sum_wf / 1500;
+    C_ep(s_idx) = sum_ep / 1500;
+    C_siso(s_idx) = sum_siso / 1500;
 end
 
 fprintf('[3/4] Running Goodput & Dynamic Rank Adaptation Evaluations...\n');
-num_frames = 150; frame_len = 256;
+num_frames = 120; frame_len = 256;
 goodput_div = zeros(length(snr_vec), 1);
 goodput_sm = zeros(length(snr_vec), 1);
 goodput_adapt = zeros(length(snr_vec), 1);
@@ -77,7 +77,7 @@ for s_idx = 1:length(snr_vec)
         
         % Diversity path
         tx_bits_div = randi([0, 1], frame_len*k, 1);
-        tx_syms_div = qammod(tx_bits_div, mod_order, 'InputType', 'bit', 'UnitAveragePower', true);
+        tx_syms_div = modulate_qam(tx_bits_div, mod_order);
         s1 = tx_syms_div(1:2:end); s2 = tx_syms_div(2:2:end); L = length(s1);
         h11=H(1,1); h12=H(1,2); h21=H(2,1); h22=H(2,2);
         x1_t1 = s1/sqrt(2); x2_t1 = s2/sqrt(2);
@@ -94,7 +94,7 @@ for s_idx = 1:length(snr_vec)
         s1_hat = (conj(h11)*r1_t1 + conj(h21)*r2_t1 + h12*conj(r1_t2) + h22*conj(r2_t2)) / (H_norm_sq/sqrt(2));
         s2_hat = (conj(h12)*r1_t1 + conj(h22)*r2_t1 - h11*conj(r1_t2) - h21*conj(r2_t2)) / (H_norm_sq/sqrt(2));
         det_div = zeros(frame_len, 1); det_div(1:2:end)=s1_hat; det_div(2:2:end)=s2_hat;
-        rx_bits_div = qamdemod(det_div, mod_order, 'OutputType', 'bit', 'UnitAveragePower', true);
+        rx_bits_div = demodulate_qam(det_div, mod_order);
         is_div_ok = (sum(tx_bits_div ~= rx_bits_div) == 0);
         if is_div_ok, div_ok = div_ok + 1; end
         
@@ -102,7 +102,7 @@ for s_idx = 1:length(snr_vec)
         tx_bits_sm = randi([0, 1], 2, frame_len*k);
         tx_syms_sm = zeros(2, frame_len);
         for tx=1:2
-            tx_syms_sm(tx, :) = qammod(tx_bits_sm(tx, :)', mod_order, 'InputType', 'bit', 'UnitAveragePower', true).';
+            tx_syms_sm(tx, :) = modulate_qam(tx_bits_sm(tx, :)', mod_order).';
         end
         X_sm = tx_syms_sm / sqrt(2);
         N_sm = sqrt(noise_var/2)*(randn(2, frame_len)+1j*randn(2, frame_len));
@@ -111,7 +111,7 @@ for s_idx = 1:length(snr_vec)
         S_hat_sm = sqrt(2)*(W_mmse * Y_sm);
         rx_bits_sm = zeros(2, frame_len*k);
         for tx=1:2
-            rx_bits_sm(tx, :) = qamdemod(S_hat_sm(tx, :)', mod_order, 'OutputType', 'bit', 'UnitAveragePower', true).';
+            rx_bits_sm(tx, :) = demodulate_qam(S_hat_sm(tx, :)', mod_order).';
         end
         is_sm_ok = (sum(sum(tx_bits_sm ~= rx_bits_sm)) == 0);
         if is_sm_ok, sm_ok = sm_ok + 1; end

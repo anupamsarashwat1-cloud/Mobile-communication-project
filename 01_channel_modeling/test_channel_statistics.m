@@ -4,6 +4,10 @@
 
 clear; clc; close all;
 
+% Add common directory to search path
+root_dir = fileparts(fileparts(mfilename('fullpath')));
+addpath(genpath(root_dir));
+
 fprintf('=======================================================\n');
 fprintf(' STAGE 1: MIMO Channel Modeling & Statistical Analysis\n');
 fprintf('=======================================================\n');
@@ -11,7 +15,7 @@ fprintf('=======================================================\n');
 % Simulation parameters
 Nt = 2;
 Nr = 2;
-num_trials = 20000;
+num_trials = 15000;
 rho_values = [0, 0.3, 0.6, 0.9];
 
 % Create figures directory if not exists
@@ -38,7 +42,7 @@ for idx = 1:length(rho_values)
     end
     
     subplot(1, 2, 1);
-    [f1, x1] = ksdensity(sigma1);
+    [f1, x1] = smooth_density(sigma1, 50, 0, 3.5);
     plot(x1, f1, 'Color', colors{idx}, 'LineWidth', 1.8, 'DisplayName', sprintf('\\rho = %.1f (\\sigma_1)', rho));
     hold on;
     grid on;
@@ -48,7 +52,7 @@ for idx = 1:length(rho_values)
     legend('Location', 'northeast');
     
     subplot(1, 2, 2);
-    [f2, x2] = ksdensity(sigma2);
+    [f2, x2] = smooth_density(sigma2, 50, 0, 2.0);
     plot(x2, f2, 'Color', colors{idx}, 'LineWidth', 1.8, 'DisplayName', sprintf('\\rho = %.1f (\\sigma_2)', rho));
     hold on;
     grid on;
@@ -69,14 +73,14 @@ p90_cond_num = zeros(length(rho_sweep), 1);
 
 for i = 1:length(rho_sweep)
     rho = rho_sweep(i);
-    [H, ~, ~] = generate_correlated_channel(Nt, Nr, rho, rho, 5000);
-    cond_nums = zeros(5000, 1);
-    for k = 1:5000
+    [H, ~, ~] = generate_correlated_channel(Nt, Nr, rho, rho, 4000);
+    cond_nums = zeros(4000, 1);
+    for k = 1:4000
         cond_nums(k) = cond(H(:, :, k));
     end
     mean_cond_num(i) = mean(cond_nums);
     median_cond_num(i) = median(cond_nums);
-    p90_cond_num(i) = prctile(cond_nums, 90);
+    p90_cond_num(i) = fast_prctile(cond_nums, 90);
 end
 
 figure('Name', 'Condition Number vs Correlation', 'Position', [150, 150, 750, 480]);

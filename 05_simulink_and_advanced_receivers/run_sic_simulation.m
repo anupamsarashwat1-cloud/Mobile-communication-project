@@ -4,6 +4,9 @@
 
 clear; clc; close all;
 
+root_dir = fileparts(fileparts(mfilename('fullpath')));
+addpath(genpath(root_dir));
+
 fprintf('=================================================================\n');
 fprintf(' STAGE 5: Advanced Receivers (MMSE-SIC / V-BLAST Detection)\n');
 fprintf('=================================================================\n');
