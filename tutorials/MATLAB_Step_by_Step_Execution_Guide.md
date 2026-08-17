@@ -130,7 +130,7 @@ If you prefer to run scripts one-by-one from the Command Window or MATLAB Editor
 ---
 
 ### Stage 4: Dynamic Adaptive Mode Switching (Goodput Optimization)
-* **What it does**: Dynamically adapts rank (Alamouti Diversity vs Spatial Mux) based on SNR and $\kappa(\mathbf{H})$.
+* **What it does**: Dynamically adapts rank (Alamouti Diversity vs Spatial Mux) based on SNR and condition number κ(H).
 * **Command**:
   ```matlab
   run('04_adaptive_mode_switching/run_adaptive_switching_simulation.m')

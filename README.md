@@ -49,10 +49,10 @@ Every stage in this repository is fully self-contained with its own dedicated co
 
 | Stage Folder | Core Focus & Methodology | Detailed Guide |
 |---|---|---|
-| [`01_channel_modeling/`](01_channel_modeling/) | **Spatially Correlated Rayleigh MIMO Channels:** Kronecker correlation model ($\mathbf{R}_{Tx}, \mathbf{R}_{Rx}$), singular value PDF distributions, and condition number ($\kappa(\mathbf{H})$) ill-conditioning analysis. | [Read Stage 1 Guide](01_channel_modeling/README.md) |
-| [`02_baseline_transceivers/`](02_baseline_transceivers/) | **Baseline Transceiver Architectures:** Alamouti $2 \times 2$ STBC Diversity Transceiver vs. Spatial Multiplexing with Linear Zero-Forcing (ZF) and MMSE receivers. | [Read Stage 2 Guide](02_baseline_transceivers/README.md) |
-| [`03_optimization_svd_waterfilling/`](03_optimization_svd_waterfilling/) | **Multiplexing Optimization via SVD & Water-Filling:** Lagrangian derivation, SVD channel decoupling ($\mathbf{H} = \mathbf{U}\mathbf{\Sigma}\mathbf{V}^H$), and Water-Filling power allocation across spatial eigenmodes. | [Read Stage 3 Guide](03_optimization_svd_waterfilling/README.md) |
-| [`04_adaptive_mode_switching/`](04_adaptive_mode_switching/) | **Dynamic Rank & Link Adaptation:** Real-time mode switching controller evaluating $\kappa(\mathbf{H})$ and SNR $\gamma$ to track the optimal upper-envelope Effective Goodput. | [Read Stage 4 Guide](04_adaptive_mode_switching/README.md) |
+| [`01_channel_modeling/`](01_channel_modeling/) | **Spatially Correlated Rayleigh MIMO Channels:** Kronecker correlation model (R_Tx, R_Rx), singular value PDF distributions, and condition number (κ(H)) ill-conditioning analysis. | [Read Stage 1 Guide](01_channel_modeling/README.md) |
+| [`02_baseline_transceivers/`](02_baseline_transceivers/) | **Baseline Transceiver Architectures:** Alamouti 2x2 STBC Transmit Diversity vs. Spatial Multiplexing with Linear Zero-Forcing (ZF) and MMSE receivers. | [Read Stage 2 Guide](02_baseline_transceivers/README.md) |
+| [`03_optimization_svd_waterfilling/`](03_optimization_svd_waterfilling/) | **Multiplexing Optimization via SVD & Water-Filling:** SVD channel decoupling (H = UΣV^H) and Water-Filling power allocation across spatial eigenmodes. | [Read Stage 3 Guide](03_optimization_svd_waterfilling/README.md) |
+| [`04_adaptive_mode_switching/`](04_adaptive_mode_switching/) | **Dynamic Rank & Link Adaptation:** Real-time mode switching controller evaluating condition number κ(H) and SNR to track the optimal upper-envelope Effective Goodput. | [Read Stage 4 Guide](04_adaptive_mode_switching/README.md) |
 | [`05_simulink_and_advanced_receivers/`](05_simulink_and_advanced_receivers/) | **MMSE-SIC & Simulink System Testbench:** Non-linear Successive Interference Cancellation (V-BLAST) and interactive Simulink block diagram model with constellation scopes. | [Read Stage 5 Guide](05_simulink_and_advanced_receivers/README.md) |
 | [`06_master_runner_and_benchmarks/`](06_master_runner_and_benchmarks/) | **Master Benchmark Suite & DMT Analysis:** Unified one-click runner executing all stages, Zheng-Tse Diversity-Multiplexing Tradeoff analysis, and 4-panel consolidated summary figure. | [Read Stage 6 Guide](06_master_runner_and_benchmarks/README.md) |
 | [`docs/`](docs/) | **Complete Formal Reports & Presentations:** Academic project report, slide deck outline with speaker notes, and professor feedback traceability matrix. | [Read Docs Index](docs/README.md) |
@@ -79,14 +79,14 @@ $$d^*(r) = (N_t - r)(N_r - r) = (2-r)^2, \quad 0 \le r \le \min(N_t, N_r)$$
 
 ## 4. Key Quantitative Results
 
-| Operating Scheme | Diversity Order ($d$) | Multiplexing Gain ($r$) | BER @ 10 dB | Effective Goodput @ 10 dB | Ergodic Capacity @ 20 dB ($\rho=0.3$) |
+| Operating Scheme | Diversity Order (d) | Multiplexing Gain (r) | BER @ 10 dB | Effective Goodput @ 10 dB | Ergodic Capacity @ 20 dB (ρ=0.3) |
 |---|:---:|:---:|:---:|:---:|:---:|
-| **SISO Baseline (1x1)** | $1$ | $1$ | $2.3 \times 10^{-2}$ | $1.20\text{ bps/Hz}$ | $5.90\text{ bps/Hz}$ |
-| **Alamouti STBC (2x2)** | $4$ | $1$ | $9.50 \times 10^{-4}$ | $1.70\text{ bps/Hz}$ | $5.90\text{ bps/Hz}$ |
-| **Spatial Mux (Linear ZF)** | $1$ | $2$ | $5.00 \times 10^{-1}$ | $0.00\text{ bps/Hz}$ | $10.91\text{ bps/Hz}$ |
-| **Spatial Mux (Linear MMSE)** | $1$ | $2$ | $5.00 \times 10^{-1}$ | $0.00\text{ bps/Hz}$ | $10.91\text{ bps/Hz}$ |
-| **Spatial Mux (MMSE-SIC)** | $2$ | $2$ | $5.01 \times 10^{-1}$ | $0.00\text{ bps/Hz}$ | $10.91\text{ bps/Hz}$ |
-| **SVD + Water-Filling (Optimized)** | Adaptive | Adaptive | Adaptive | **$1.70\text{ bps/Hz}$** | **$11.07\text{ bps/Hz}$** |
+| **SISO Baseline (1x1)** | 1 | 1 | 2.30e-02 | 1.20 bps/Hz | 5.90 bps/Hz |
+| **Alamouti STBC (2x2)** | 4 | 1 | 9.50e-04 | 1.70 bps/Hz | 5.90 bps/Hz |
+| **Spatial Mux (Linear ZF)** | 1 | 2 | 5.00e-01 | 0.00 bps/Hz | 10.91 bps/Hz |
+| **Spatial Mux (Linear MMSE)** | 1 | 2 | 5.00e-01 | 0.00 bps/Hz | 10.91 bps/Hz |
+| **Spatial Mux (MMSE-SIC)** | 2 | 2 | 5.01e-01 | 0.00 bps/Hz | 10.91 bps/Hz |
+| **Adaptive SVD-WF (Optimized)** | Adaptive | Adaptive | Adaptive | **1.70 bps/Hz** | **11.07 bps/Hz** |
 
 ---
 
