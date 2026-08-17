@@ -12,29 +12,39 @@ This stage models a fixed Nt x Nr MIMO Rayleigh flat-fading channel under arbitr
 ### 2.1 The Kronecker Correlation Model
 The full MIMO channel matrix H (size Nr x Nt) with transmit correlation matrix R_Tx and receive correlation matrix R_Rx is expressed using the Kronecker product model:
 
-$$\mathbf{H} = \mathbf{R}_{Rx}^{1/2} \mathbf{H}_{iid} \left(\mathbf{R}_{Tx}^{1/2}\right)^T$$
+```math
+\mathbf{H} = \mathbf{R}_{Rx}^{1/2} \mathbf{H}_{iid} \left(\mathbf{R}_{Tx}^{1/2}\right)^T
+```
 
 Where:
 * **H_iid** is the uncorrelated independent identically distributed Rayleigh fading matrix with complex Gaussian entries:
 
-$$h_{ij} = \frac{1}{\sqrt{2}}(u + jv), \quad u, v \sim \mathcal{N}(0, 1)$$
+```math
+h_{ij} = \frac{1}{\sqrt{2}}(u + jv), \quad u, v \sim \mathcal{N}(0, 1)
+```
 
 * **R_Tx** and **R_Rx** are the spatial correlation matrices modeled using the exponential correlation model:
 
-$$[\mathbf{R}_{Tx}]_{i,j} = \rho_{tx}^{|i - j|}, \quad [\mathbf{R}_{Rx}]_{i,j} = \rho_{rx}^{|i - j|}$$
+```math
+[\mathbf{R}_{Tx}]_{i,j} = \rho_{tx}^{|i - j|}, \quad [\mathbf{R}_{Rx}]_{i,j} = \rho_{rx}^{|i - j|}
+```
 
 where ρ in [0, 1) is the spatial correlation coefficient.
 
 ### 2.2 Singular Value Decomposition & Condition Number
 Applying Singular Value Decomposition (SVD):
 
-$$\mathbf{H} = \mathbf{U} \mathbf{\Sigma} \mathbf{V}^H$$
+```math
+\mathbf{H} = \mathbf{U} \mathbf{\Sigma} \mathbf{V}^H
+```
 
 where Σ = diag(σ_1, σ_2, ..., σ_min(Nt, Nr)) contains ordered singular values σ_1 ≥ σ_2 ≥ ... ≥ 0.
 
 The **Condition Number** of the channel matrix is defined as:
 
-$$\kappa(\mathbf{H}) = \frac{\sigma_{max}(\mathbf{H})}{\sigma_{min}(\mathbf{H})} = \frac{\sigma_1}{\sigma_2}$$
+```math
+\kappa(\mathbf{H}) = \frac{\sigma_{max}(\mathbf{H})}{\sigma_{min}(\mathbf{H})} = \frac{\sigma_1}{\sigma_2}
+```
 
 * **Well-Conditioned Channel (κ ≈ 1):** Spatial sub-channels are orthogonal; ideal for full rank spatial multiplexing.
 * **Ill-Conditioned Channel (κ >> 1):** Spatial sub-channels are collinear; linear spatial multiplexing (ZF) causes catastrophic noise amplification.

@@ -14,7 +14,9 @@ This stage designs an **Adaptive MIMO Controller** that dynamically monitors ins
 ### 2.1 Effective Goodput Metric
 Effective throughput (Goodput T_eff) accounts for the retransmission / frame discard penalty when packets are corrupted:
 
-$$T_{eff} = R_{mode} \times (1 - \text{FER}) \quad \text{[bps/Hz]}$$
+```math
+T_{eff} = R_{mode} \times (1 - \text{FER}) \quad \text{[bps/Hz]}
+```
 
 Where:
 * R_mode = 1 * log2(M) for Mode 0 (Alamouti STBC Diversity)
@@ -24,7 +26,9 @@ Where:
 ### 2.2 Adaptive Switching Decision Rules
 The controller computes the condition number κ(H) = σ_1 / σ_2 and instantaneous SNR γ and maps the channel state:
 
-$$\text{Mode} = \begin{cases} \text{Alamouti STBC (Diversity Mode)}, & \text{if } \gamma < \gamma_{th} \text{ or } \kappa(\mathbf{H}) > \kappa_{th} \\ \text{Spatial Multiplexing (Rank-2 Mode)}, & \text{if } \gamma \ge \gamma_{th} \text{ and } \kappa(\mathbf{H}) \le \kappa_{th} \end{cases}$$
+```math
+\text{Mode} = \begin{cases} \text{Alamouti STBC (Diversity Mode)}, & \text{if } \gamma < \gamma_{th} \text{ or } \kappa(\mathbf{H}) > \kappa_{th} \\ \text{Spatial Multiplexing (Rank-2 Mode)}, & \text{if } \gamma \ge \gamma_{th} \text{ and } \kappa(\mathbf{H}) \le \kappa_{th} \end{cases}
+```
 
 In our fixed 2x2 QPSK implementation, optimal threshold boundaries are empirically calibrated at γ_th = 8.0 dB and κ_th = 4.5.
 

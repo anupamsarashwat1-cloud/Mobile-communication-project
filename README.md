@@ -63,17 +63,25 @@ Every stage in this repository is fully self-contained with its own dedicated co
 
 ### 3.1 Water-Filling Power Allocation
 
-$$\max_{\{P_i\}} \sum_{i=1}^{r} \log_2 \left( 1 + \frac{P_i \sigma_i^2}{\sigma_n^2} \right) \quad \text{subject to } \sum_{i=1}^{r} P_i = P_{total}, \; P_i \ge 0$$
+```math
+\max_{\{P_i\}} \sum_{i=1}^{r} \log_2 \left( 1 + \frac{P_i \sigma_i^2}{\sigma_n^2} \right) \quad \text{subject to } \sum_{i=1}^{r} P_i = P_{total}, \; P_i \ge 0
+```
 
-$$P_i^* = \max\left(0, \; \mu - \frac{\sigma_n^2}{\sigma_i^2}\right)$$
+```math
+P_i^{\ast} = \max\left(0, \; \mu - \frac{\sigma_n^2}{\sigma_i^2}\right)
+```
 
 ### 3.2 Dynamic Rank Adaptation Rule
 
-$$\text{Mode} = \begin{cases} \text{Alamouti STBC (Diversity Mode)}, & \text{if } \gamma < 8.0\text{ dB} \text{ or } \kappa(\mathbf{H}) > 4.5 \\ \text{Spatial Multiplexing (SVD-WF Mode)}, & \text{if } \gamma \ge 8.0\text{ dB} \text{ and } \kappa(\mathbf{H}) \le 4.5 \end{cases}$$
+```math
+\text{Mode} = \begin{cases} \text{Alamouti STBC (Diversity Mode)}, & \text{if } \gamma < 8.0\text{ dB} \text{ or } \kappa(\mathbf{H}) > 4.5 \\ \text{Spatial Multiplexing (SVD-WF Mode)}, & \text{if } \gamma \ge 8.0\text{ dB} \text{ and } \kappa(\mathbf{H}) \le 4.5 \end{cases}
+```
 
 ### 3.3 Zheng-Tse Diversity-Multiplexing Trade-off (DMT)
 
-$$d^*(r) = (N_t - r)(N_r - r) = (2-r)^2, \quad 0 \le r \le \min(N_t, N_r)$$
+```math
+d^{\ast}(r) = (N_t - r)(N_r - r) = (2-r)^2, \quad 0 \le r \le \min(N_t, N_r)
+```
 
 ---
 

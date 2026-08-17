@@ -32,11 +32,15 @@
 ### Slide 3: System Architecture & Mathematical Modeling
 * **Correlated Rayleigh Channel:** Kronecker Model:
 
-$$\mathbf{H} = \mathbf{R}_{Rx}^{1/2} \mathbf{H}_{iid} \left(\mathbf{R}_{Tx}^{1/2}\right)^T$$
+```math
+\mathbf{H} = \mathbf{R}_{Rx}^{1/2} \mathbf{H}_{iid} \left(\mathbf{R}_{Tx}^{1/2}\right)^T
+```
 
 * **SVD Decoupling:**
 
-$$\mathbf{H} = \mathbf{U}\mathbf{\Sigma}\mathbf{V}^H \implies \tilde{\mathbf{y}} = \mathbf{\Sigma} \mathbf{P}^{1/2} \mathbf{s} + \tilde{\mathbf{n}}$$
+```math
+\mathbf{H} = \mathbf{U}\mathbf{\Sigma}\mathbf{V}^H \implies \tilde{\mathbf{y}} = \mathbf{\Sigma} \mathbf{P}^{1/2} \mathbf{s} + \tilde{\mathbf{n}}
+```
 
 * **Channel Condition Number:** κ(H) = σ_1 / σ_2.
 * **Speaker Note:**  
@@ -48,7 +52,9 @@ $$\mathbf{H} = \mathbf{U}\mathbf{\Sigma}\mathbf{V}^H \implies \tilde{\mathbf{y}}
 * **Formulation:** Maximize sum spectral efficiency subject to sum power constraint P_total.
 * **Optimal Water-Filling Solution:**
 
-$$P_i^* = \max\left(0, \; \mu - \frac{\sigma_n^2}{\sigma_i^2}\right)$$
+```math
+P_i^{\ast} = \max\left(0, \; \mu - \frac{\sigma_n^2}{\sigma_i^2}\right)
+```
 
 * **Behavior:**
   * *Low SNR / High Correlation:* Allocates 100% power to dominant mode σ_1 (optimal eigenbeamforming).
@@ -62,7 +68,9 @@ $$P_i^* = \max\left(0, \; \mu - \frac{\sigma_n^2}{\sigma_i^2}\right)$$
 * **Real-time Controller:** Monitors instantaneous SNR (γ) and Condition Number (κ(H)).
 * **Switching Logic:**
 
-$$\text{Mode} = \begin{cases} \text{Rank-2 (Spatial Multiplexing)}, & \text{if } \gamma \ge 8.0\text{ dB} \text{ and } \kappa(\mathbf{H}) \le 4.5 \\ \text{Rank-1 (Alamouti Diversity STBC)}, & \text{otherwise} \end{cases}$$
+```math
+\text{Mode} = \begin{cases} \text{Rank-2 (Spatial Multiplexing)}, & \text{if } \gamma \ge 8.0\text{ dB} \text{ and } \kappa(\mathbf{H}) \le 4.5 \\ \text{Rank-1 (Alamouti Diversity STBC)}, & \text{otherwise} \end{cases}
+```
 
 * **Impact:** Traces the upper convex envelope of Effective Goodput with zero low-SNR outage.
 * **Speaker Note:**  

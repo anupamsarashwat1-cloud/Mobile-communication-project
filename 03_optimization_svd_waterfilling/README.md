@@ -12,36 +12,50 @@ This stage implements the theoretically optimal spatial multiplexing transceiver
 ### 2.1 SVD Channel Decoupling
 Given channel realization H (size Nr x Nt), we perform SVD:
 
-$$\mathbf{H} = \mathbf{U} \mathbf{\Sigma} \mathbf{V}^H$$
+```math
+\mathbf{H} = \mathbf{U} \mathbf{\Sigma} \mathbf{V}^H
+```
 
 * **Transmitter Precoding:** The symbol vector s = [s_1, ..., s_r]^T is precoded by right-singular matrix V:
 
-$$\mathbf{x} = \mathbf{V} \mathbf{P}^{1/2} \mathbf{s}$$
+```math
+\mathbf{x} = \mathbf{V} \mathbf{P}^{1/2} \mathbf{s}
+```
 
 where P = diag(P_1, ..., P_r) is the power allocation matrix.
 
 * **Receiver Combining:** The received signal y = Hx + n is combined by left-singular matrix U^H:
 
-$$\mathbf{\tilde{y}} = \mathbf{U}^H \mathbf{y} = \mathbf{\Sigma} \mathbf{P}^{1/2} \mathbf{s} + \mathbf{\tilde{n}}$$
+```math
+\mathbf{\tilde{y}} = \mathbf{U}^H \mathbf{y} = \mathbf{\Sigma} \mathbf{P}^{1/2} \mathbf{s} + \mathbf{\tilde{n}}
+```
 
 Since U is unitary, the transformed noise remains white Gaussian noise.
 
 This decomposes the coupled Nt x Nr MIMO channel into r = min(Nt, Nr) completely independent parallel SISO sub-channels:
 
-$$\tilde{y}_i = \sigma_i \sqrt{P_i} s_i + \tilde{n}_i, \quad i = 1, \dots, r$$
+```math
+\tilde{y}_i = \sigma_i \sqrt{P_i} s_i + \tilde{n}_i, \quad i = 1, \dots, r
+```
 
 ### 2.2 Water-Filling Optimization (Lagrangian Derivation)
 To maximize sum spectral efficiency under total transmit power constraint P_total:
 
-$$\max_{\{P_i\}} \sum_{i=1}^{r} \log_2 \left( 1 + \frac{P_i \sigma_i^2}{\sigma_n^2} \right) \quad \text{subject to } \sum_{i=1}^{r} P_i = P_{total}, \; P_i \ge 0$$
+```math
+\max_{\{P_i\}} \sum_{i=1}^{r} \log_2 \left( 1 + \frac{P_i \sigma_i^2}{\sigma_n^2} \right) \quad \text{subject to } \sum_{i=1}^{r} P_i = P_{total}, \; P_i \ge 0
+```
 
 Formulating the Lagrangian with multiplier λ:
 
-$$\mathcal{L}(P_1, \dots, P_r, \lambda) = \sum_{i=1}^{r} \ln \left( 1 + \frac{P_i \sigma_i^2}{\sigma_n^2} \right) - \lambda \left( \sum_{i=1}^{r} P_i - P_{total} \right)$$
+```math
+\mathcal{L}(P_1, \dots, P_r, \lambda) = \sum_{i=1}^{r} \ln \left( 1 + \frac{P_i \sigma_i^2}{\sigma_n^2} \right) - \lambda \left( \sum_{i=1}^{r} P_i - P_{total} \right)
+```
 
 Taking the partial derivative with respect to P_i yields the optimal water-filling solution:
 
-$$P_i^* = \max \left( 0, \; \mu - \frac{\sigma_n^2}{\sigma_i^2} \right)$$
+```math
+P_i^{\ast} = \max \left( 0, \; \mu - \frac{\sigma_n^2}{\sigma_i^2} \right)
+```
 
 where μ = 1/λ is the **water level** determined by the constraint sum(P_i*) = P_total.
 

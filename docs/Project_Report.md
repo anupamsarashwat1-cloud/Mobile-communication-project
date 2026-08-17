@@ -41,37 +41,51 @@ Rather than providing a standard textbook comparison, this project delivers an o
 ### 3.1 Correlated MIMO Channel Model
 The discrete-time baseband received signal vector y (size Nr x 1) is:
 
-$$\mathbf{y} = \mathbf{H}\mathbf{x} + \mathbf{n}, \quad \mathbf{n} \sim \mathcal{CN}(0, \sigma_n^2 \mathbf{I}_{N_r})$$
+```math
+\mathbf{y} = \mathbf{H}\mathbf{x} + \mathbf{n}, \quad \mathbf{n} \sim \mathcal{CN}(0, \sigma_n^2 \mathbf{I}_{N_r})
+```
 
 Spatial correlation is modeled via the Kronecker formulation:
 
-$$\mathbf{H} = \mathbf{R}_{Rx}^{1/2} \mathbf{H}_{iid} \left(\mathbf{R}_{Tx}^{1/2}\right)^T$$
+```math
+\mathbf{H} = \mathbf{R}_{Rx}^{1/2} \mathbf{H}_{iid} \left(\mathbf{R}_{Tx}^{1/2}\right)^T
+```
 
 where [R]_{i,j} = ρ^{|i - j|} with correlation coefficient ρ in [0, 1).
 
 The channel condition number is defined as:
 
-$$\kappa(\mathbf{H}) = \frac{\sigma_{max}(\mathbf{H})}{\sigma_{min}(\mathbf{H})} = \frac{\sigma_1}{\sigma_2}$$
+```math
+\kappa(\mathbf{H}) = \frac{\sigma_{max}(\mathbf{H})}{\sigma_{min}(\mathbf{H})} = \frac{\sigma_1}{\sigma_2}
+```
 
 ### 3.2 SVD Precoding & Iterative Water-Filling Optimization
 By applying Singular Value Decomposition H = U Σ V^H, the MIMO link is decomposed into r = min(Nt, Nr) orthogonal, uncoupled SISO sub-channels:
 
-$$\tilde{\mathbf{y}} = \mathbf{U}^H \mathbf{y} = \mathbf{\Sigma} \mathbf{P}^{1/2} \mathbf{s} + \tilde{\mathbf{n}}$$
+```math
+\tilde{\mathbf{y}} = \mathbf{U}^H \mathbf{y} = \mathbf{\Sigma} \mathbf{P}^{1/2} \mathbf{s} + \tilde{\mathbf{n}}
+```
 
 Sum capacity optimization under total transmit power P_total is formulated as:
 
-$$\max_{\{P_i\}} \sum_{i=1}^{r} \log_2 \left( 1 + \frac{P_i \sigma_i^2}{\sigma_n^2} \right) \quad \text{s.t.} \quad \sum_{i=1}^r P_i = P_{total}, \; P_i \ge 0$$
+```math
+\max_{\{P_i\}} \sum_{i=1}^{r} \log_2 \left( 1 + \frac{P_i \sigma_i^2}{\sigma_n^2} \right) \quad \text{s.t.} \quad \sum_{i=1}^r P_i = P_{total}, \; P_i \ge 0
+```
 
 Applying the Karush-Kuhn-Tucker (KKT) conditions yields the Water-Filling power allocation:
 
-$$P_i^* = \max\left(0, \; \mu - \frac{\sigma_n^2}{\sigma_i^2}\right)$$
+```math
+P_i^{\ast} = \max\left(0, \; \mu - \frac{\sigma_n^2}{\sigma_i^2}\right)
+```
 
 where the water level μ is iteratively solved using exact bisection over the active sub-channels.
 
 ### 3.3 Dynamic Rank Adaptation Rule
 To maximize Goodput under packet error constraints, the transmission rank is selected dynamically:
 
-$$\text{Mode} = \begin{cases} \text{Rank-2 (Spatial Multiplexing)}, & \text{if } \gamma \ge 8.0\text{ dB} \text{ and } \kappa(\mathbf{H}) \le 4.5 \\ \text{Rank-1 (Alamouti STBC Diversity)}, & \text{otherwise} \end{cases}$$
+```math
+\text{Mode} = \begin{cases} \text{Rank-2 (Spatial Multiplexing)}, & \text{if } \gamma \ge 8.0\text{ dB} \text{ and } \kappa(\mathbf{H}) \le 4.5 \\ \text{Rank-1 (Alamouti STBC Diversity)}, & \text{otherwise} \end{cases}
+```
 
 ---
 
