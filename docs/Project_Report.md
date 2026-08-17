@@ -127,5 +127,11 @@ In addition to statistical BER sweeps, the framework provides real-time time-dom
 
 ---
 
-## 5. Conclusion
+## 5. Conclusion & Repository Access
 This project demonstrates that in fixed MIMO systems, unoptimized spatial multiplexing suffers severe performance loss in correlated fading. By combining SVD precoding, optimal Water-Filling power allocation, non-linear SIC detection, and condition-number-aware adaptive rank switching, the proposed system extracts maximum spectral efficiency while maintaining robust link reliability.
+
+### 📱 Repository QR Code
+<p align="center">
+  <img src="../assets/repository_qr_code.png" width="160" alt="Repository QR Code" /><br>
+  <sub>Scan to view full MATLAB codebase, simulation models, and logs on GitHub: <a href="https://github.com/anupamsarashwat1-cloud/Mobile-communication-project">Mobile-communication-project</a></sub>
+</p>

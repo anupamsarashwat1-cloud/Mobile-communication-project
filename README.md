@@ -278,4 +278,14 @@ You can run each stage independently and view real-time figures and console metr
 3. **Om Kumar** — `Entry No: 23bec038`
 4. **Ashmit Raj** — `Entry No: 23bec017`
 
+---
+
+### 📱 Scan to Access GitHub Repository
+
+<p align="center">
+  <img src="assets/repository_qr_code.png" width="180" alt="Repository QR Code" /><br>
+  <sub><b>Scan with mobile camera or QR reader to open this GitHub repository directly</b></sub><br>
+  <a href="https://github.com/anupamsarashwat1-cloud/Mobile-communication-project">https://github.com/anupamsarashwat1-cloud/Mobile-communication-project</a>
+</p>
+
 

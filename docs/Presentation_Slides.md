@@ -136,4 +136,10 @@ P_i^{\ast} = \max\left(0, \; \mu - \frac{\sigma_n^2}{\sigma_i^2}\right)
 2. SVD Water-Filling provides up to **48.5% capacity gain** over unoptimized transmission in correlated fading.
 3. Adaptive mode switching achieves the maximum goodput envelope across all SNR regimes.
 4. Fully verified via automated terminal testbenches and interactive MATLAB GUI.
+
+<p align="center">
+  <img src="../assets/repository_qr_code.png" width="150" alt="Repository QR Code" /><br>
+  <sub>Scan to explore project repository on GitHub</sub>
+</p>
+
 * **Thank you! Questions and comments are welcome.**
