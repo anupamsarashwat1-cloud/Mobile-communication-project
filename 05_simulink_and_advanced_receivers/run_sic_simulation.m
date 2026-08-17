@@ -1,11 +1,11 @@
-% RUN_SIC_SIMULATION
-% Stage 5: Evaluates Non-Linear Successive Interference Cancellation (MMSE-SIC / V-BLAST)
-% Compares BER of MMSE-SIC against Linear MMSE and Zero-Forcing across Rayleigh channels.
-
 clear; clc; close all;
 
 root_dir = fileparts(fileparts(mfilename('fullpath')));
 addpath(genpath(root_dir));
+
+warning('off', 'MATLAB:opengl:SoftwareRendering');
+warning('off', 'MATLAB:print:GraphicsAccelerationHardwareUnavailable');
+warning('off', 'MATLAB:prnRenderer:opengl');
 
 fprintf('=================================================================\n');
 fprintf(' STAGE 5: Advanced Receivers (MMSE-SIC / V-BLAST Detection)\n');

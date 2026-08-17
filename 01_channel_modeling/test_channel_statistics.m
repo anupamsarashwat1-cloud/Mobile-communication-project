@@ -1,12 +1,13 @@
-% TEST_CHANNEL_STATISTICS
-% Stage 1: Validation and statistical analysis of correlated Rayleigh MIMO channels.
-% Analyzes singular value distribution, condition number kappa(H), and rank degradation.
-
 clear; clc; close all;
 
-% Add common directory to search path
+% Add project root to path
 root_dir = fileparts(fileparts(mfilename('fullpath')));
 addpath(genpath(root_dir));
+
+% Suppress headless/software OpenGL rendering warnings
+warning('off', 'MATLAB:opengl:SoftwareRendering');
+warning('off', 'MATLAB:print:GraphicsAccelerationHardwareUnavailable');
+warning('off', 'MATLAB:prnRenderer:opengl');
 
 fprintf('=======================================================\n');
 fprintf(' STAGE 1: MIMO Channel Modeling & Statistical Analysis\n');

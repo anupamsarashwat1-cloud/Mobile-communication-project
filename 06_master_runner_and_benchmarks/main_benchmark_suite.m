@@ -1,8 +1,12 @@
-% MAIN_BENCHMARK_SUITE
-% Master simulation testbench executing end-to-end evaluation of all MIMO schemes.
-% Generates publication-ready figures, quantitative metrics tables, and consolidated dashboard.
-
 clear; clc; close all;
+
+% Add all stage subdirectories to MATLAB search path
+root_dir = fileparts(fileparts(mfilename('fullpath')));
+addpath(genpath(root_dir));
+
+warning('off', 'MATLAB:opengl:SoftwareRendering');
+warning('off', 'MATLAB:print:GraphicsAccelerationHardwareUnavailable');
+warning('off', 'MATLAB:prnRenderer:opengl');
 
 fprintf('================================================================================\n');
 fprintf(' MASTER BENCHMARK SUITE: MIMO DIVERSITY VS SPATIAL MULTIPLEXING OPTIMIZATION\n');

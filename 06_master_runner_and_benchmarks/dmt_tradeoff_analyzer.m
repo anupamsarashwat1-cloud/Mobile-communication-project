@@ -1,8 +1,11 @@
-% DMT_TRADEOFF_ANALYZER
-% Evaluates the fundamental Zheng-Tse Diversity-Multiplexing Tradeoff (DMT) for fixed MIMO.
-% Plots theoretical bounds and overlays operating points of Alamouti STBC vs Spatial Multiplexing.
-
 clear; clc; close all;
+
+root_dir = fileparts(fileparts(mfilename('fullpath')));
+addpath(genpath(root_dir));
+
+warning('off', 'MATLAB:opengl:SoftwareRendering');
+warning('off', 'MATLAB:print:GraphicsAccelerationHardwareUnavailable');
+warning('off', 'MATLAB:prnRenderer:opengl');
 
 fprintf('=================================================================\n');
 fprintf(' STAGE 6: Zheng-Tse Diversity-Multiplexing Tradeoff (DMT) Analysis\n');

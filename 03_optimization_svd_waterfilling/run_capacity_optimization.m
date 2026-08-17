@@ -1,8 +1,11 @@
-% RUN_CAPACITY_OPTIMIZATION
-% Stage 3: Evaluates Ergodic Capacity & Spectral Efficiency optimization for fixed MIMO.
-% Compares SVD with Water-Filling vs Equal Power Allocation vs Unprecoded ZF across SNR & Correlation.
-
 clear; clc; close all;
+
+root_dir = fileparts(fileparts(mfilename('fullpath')));
+addpath(genpath(root_dir));
+
+warning('off', 'MATLAB:opengl:SoftwareRendering');
+warning('off', 'MATLAB:print:GraphicsAccelerationHardwareUnavailable');
+warning('off', 'MATLAB:prnRenderer:opengl');
 
 fprintf('=================================================================\n');
 fprintf(' STAGE 3: Multiplexing Capacity Optimization (SVD + Water-Filling)\n');

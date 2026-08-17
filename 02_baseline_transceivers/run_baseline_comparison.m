@@ -1,8 +1,11 @@
-% RUN_BASELINE_COMPARISON
-% Stage 2: Compares 2x2 Alamouti STBC Diversity vs Spatial Multiplexing (ZF & MMSE).
-% Demonstrates the classic Diversity vs Multiplexing trade-off over Rayleigh channels.
-
 clear; clc; close all;
+
+root_dir = fileparts(fileparts(mfilename('fullpath')));
+addpath(genpath(root_dir));
+
+warning('off', 'MATLAB:opengl:SoftwareRendering');
+warning('off', 'MATLAB:print:GraphicsAccelerationHardwareUnavailable');
+warning('off', 'MATLAB:prnRenderer:opengl');
 
 fprintf('=================================================================\n');
 fprintf(' STAGE 2: Baseline Comparison (Alamouti STBC vs ZF/MMSE Receivers)\n');

@@ -1,10 +1,11 @@
-% RUN_ADAPTIVE_SWITCHING_SIMULATION
-% Stage 4: Evaluates Effective Throughput (Goodput) of Adaptive Mode Switching vs Fixed Schemes.
-
 clear; clc; close all;
 
 root_dir = fileparts(fileparts(mfilename('fullpath')));
 addpath(genpath(root_dir));
+
+warning('off', 'MATLAB:opengl:SoftwareRendering');
+warning('off', 'MATLAB:print:GraphicsAccelerationHardwareUnavailable');
+warning('off', 'MATLAB:prnRenderer:opengl');
 
 fprintf('=================================================================\n');
 fprintf(' STAGE 4: Adaptive Mode Switching & Goodput Optimization\n');
