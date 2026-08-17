@@ -86,24 +86,49 @@ $$d^*(r) = (N_t - r)(N_r - r), \quad 0 \le r \le \min(N_t, N_r)$$
 
 ---
 
-## 5. Quick Start Guide
+## 5. User Guides & Documentation Links
 
-### Prerequisites
-* MATLAB R2021b or newer
-* Communications Toolbox
-* Signal Processing Toolbox
+* 📘 **[Complete Implementation Plan](IMPLEMENTATION_PLAN.md)**: Full theoretical breakdown, stage design, and execution architecture.
+* 🚀 **[MATLAB Desktop & Online Step-by-Step Tutorial](tutorials/MATLAB_Step_by_Step_Execution_Guide.md)**: Clear guide to open, clone, execute, and view results on MATLAB Desktop and MATLAB Online.
+* 📊 **[Terminal & Benchmark Execution Logs](docs/logs/execution_logs.md)**: Verified simulation output and quantitative summary tables.
+* 📑 **[Formal Academic Project Report](docs/Project_Report.md)**: Complete 10-page formatted technical paper.
+* 🎤 **[Presentation Slide Deck](docs/Presentation_Slides.md)**: 12-slide defense presentation with speaker notes.
+* 🎯 **[Professor Feedback Traceability](docs/Professor_Feedback_Addressed.md)**: Line-by-line verification addressing the professor's handwritten directive.
 
-### Running the Entire Suite
-To run all simulations and generate all figures at once:
+---
+
+## 6. Quick Start Guide
+
+### Zero Toolbox Dependencies
+All core signal processing algorithms, modulation/demodulation routines, density estimators, and condition-number calculations have been engineered natively in `common/`. **No optional or paid toolboxes (Communications/Statistics) are required.**
+
+### Option A: Interactive MATLAB Desktop GUI (1-Click)
+1. In Windows File Explorer, double-click **`launch_gui.bat`** (or open MATLAB and `cd 'C:\Users\anupa\OneDrive\Documents\Mobile Communication Project'`).
+2. In the MATLAB Command Window, type:
+   ```matlab
+   gui_dashboard
+   ```
+3. An interactive visual control window will appear with one-click buttons for every stage.
+
+### Option B: MATLAB Online (Web Browser)
+1. Open [MATLAB Online](https://matlab.mathworks.com).
+2. In the Command Window, run:
+   ```matlab
+   !git clone https://github.com/anupamsarashwat1-cloud/Mobile-communication-project.git
+   cd Mobile-communication-project
+   gui_dashboard
+   ```
+
+### Option C: Run Unified Master Benchmark via Script
 ```matlab
-% In the MATLAB Command Window:
-cd '06_master_runner_and_benchmarks'
-main_benchmark_suite
+run('06_master_runner_and_benchmarks/main_benchmark_suite.m')
 ```
 
 ---
 
-## 6. Author & Course Information
+## 7. Author & Course Information
 * **Course:** ECL DC 401 – Mobile Communication
 * **Department:** Electronics & Communication Engineering
 * **Project Title:** MIMO Diversity vs. Spatial Multiplexing Trade-off in 5G Wireless Links: Multiplexing Efficiency Optimization for Fixed Antenna Systems
+* **Repository:** [https://github.com/anupamsarashwat1-cloud/Mobile-communication-project](https://github.com/anupamsarashwat1-cloud/Mobile-communication-project)
+
