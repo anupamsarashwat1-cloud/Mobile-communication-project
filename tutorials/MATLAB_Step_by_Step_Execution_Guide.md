@@ -100,9 +100,10 @@ If you prefer to run scripts one-by-one from the Command Window or MATLAB Editor
   ```matlab
   run('01_channel_modeling/test_channel_statistics.m')
   ```
-* **Output Generated**:
-  - `01_channel_modeling/figures/singular_value_pdf.png`
-  - `01_channel_modeling/figures/condition_number_vs_correlation.png`
+* **Visual Plots Generated**:
+  
+  ![Singular Value PDF](../01_channel_modeling/figures/singular_value_pdf.png)
+  ![Condition Number vs Correlation](../01_channel_modeling/figures/condition_number_vs_correlation.png)
 
 ---
 
@@ -112,9 +113,10 @@ If you prefer to run scripts one-by-one from the Command Window or MATLAB Editor
   ```matlab
   run('02_baseline_transceivers/run_baseline_comparison.m')
   ```
-* **Output Generated**:
-  - `02_baseline_transceivers/figures/alamouti_vs_sm_ber.png`
-  - `02_baseline_transceivers/figures/zf_noise_amplification_analysis.png`
+* **Visual Plots Generated**:
+  
+  ![Alamouti vs Spatial Multiplexing BER](../02_baseline_transceivers/figures/alamouti_vs_sm_ber.png)
+  ![ZF Noise Amplification](../02_baseline_transceivers/figures/zf_noise_amplification_analysis.png)
 
 ---
 
@@ -124,9 +126,10 @@ If you prefer to run scripts one-by-one from the Command Window or MATLAB Editor
   ```matlab
   run('03_optimization_svd_waterfilling/run_capacity_optimization.m')
   ```
-* **Output Generated**:
-  - `03_optimization_svd_waterfilling/figures/capacity_wf_vs_equal_power.png`
-  - `03_optimization_svd_waterfilling/figures/capacity_gain_vs_correlation.png`
+* **Visual Plots Generated**:
+  
+  ![Capacity Water-Filling vs Equal Power](../03_optimization_svd_waterfilling/figures/capacity_wf_vs_equal_power.png)
+  ![Capacity Gain vs Correlation](../03_optimization_svd_waterfilling/figures/capacity_gain_vs_correlation.png)
 
 ---
 
@@ -136,21 +139,23 @@ If you prefer to run scripts one-by-one from the Command Window or MATLAB Editor
   ```matlab
   run('04_adaptive_mode_switching/run_adaptive_switching_simulation.m')
   ```
-* **Output Generated**:
-  - `04_adaptive_mode_switching/figures/effective_goodput_envelope.png`
-  - `04_adaptive_mode_switching/figures/mode_switching_decision_boundary.png`
+* **Visual Plots Generated**:
+  
+  ![Effective Goodput Envelope](../04_adaptive_mode_switching/figures/effective_goodput_envelope.png)
+  ![Adaptive Mode Decision Regions](../04_adaptive_mode_switching/figures/mode_switching_decision_boundary.png)
 
 ---
 
-### Stage 5: Advanced Non-Linear Receivers (MMSE-SIC / V-BLAST)
+### Stage 5: Advanced Non-Linear Receivers & Simulink System Testbench
 * **What it does**: Evaluates successive interference cancellation and provides the Simulink block diagram.
 * **Command**:
   ```matlab
   run('05_simulink_and_advanced_receivers/run_sic_simulation.m')
   ```
-* **Output Generated**:
-  - `05_simulink_and_advanced_receivers/figures/sic_vs_linear_receivers_ber.png`
-  - `05_simulink_and_advanced_receivers/figures/simulink_model_overview.png`
+* **Visual Plots Generated**:
+  
+  ![Simulink System Architecture](../05_simulink_and_advanced_receivers/figures/simulink_model_overview.png)
+  ![MMSE-SIC vs Linear Receivers](../05_simulink_and_advanced_receivers/figures/sic_vs_linear_receivers_ber.png)
 
 ---
 
@@ -160,9 +165,10 @@ If you prefer to run scripts one-by-one from the Command Window or MATLAB Editor
   ```matlab
   run('06_master_runner_and_benchmarks/main_benchmark_suite.m')
   ```
-* **Output Generated**:
-  - `06_master_runner_and_benchmarks/figures/master_comprehensive_summary.png`
-  - `06_master_runner_and_benchmarks/figures/dmt_diversity_multiplexing_curve.png`
+* **Visual Plots Generated**:
+  
+  ![Master Comprehensive Summary](../06_master_runner_and_benchmarks/figures/master_comprehensive_summary.png)
+  ![DMT Trade-off Curve](../06_master_runner_and_benchmarks/figures/dmt_diversity_multiplexing_curve.png)
 
 ---
 
@@ -178,15 +184,9 @@ If you prefer to run scripts one-by-one from the Command Window or MATLAB Editor
   ```matlab
   visualize_waveforms_and_constellations
   ```
-* **What the 6-Panel Visual Diagnostic Displays**:
-  1. **Panel 1 (Tx Waveform)**: In-Phase (I) and Quadrature (Q) time-domain discrete baseband signals exiting Transmit Antenna 1.
-  2. **Panel 2 (Rx Waveform)**: Correlated, faded, and noisy signal envelopes received across Rx Antenna 1 and Rx Antenna 2.
-  3. **Panel 3 (Tx Constellation)**: Clean 4-point QPSK constellation grid before transmission.
-  4. **Panel 4 (Rx Constellation)**: Un-equalized received scatter cloud distorted by Rayleigh multipath fading and inter-antenna interference.
-  5. **Panel 5 (Equalized Constellation)**: Cleanly resolved 4-cluster constellation recovered after MMSE-SIC detection.
-  6. **Panel 6 (Power Tanks)**: Water-Filling power allocation bar chart showing optimal power $P_i^{\ast}$ poured above the inverse SNR noise floor ($1/\gamma_i$).
-* **Output Generated**:
-  - `docs/figures/live_waveforms_and_constellations.png`
+* **Visual Plot Generated**:
+  
+  ![Live Waveforms and Constellations](../docs/figures/live_waveforms_and_constellations.png)
 
 ---
 

@@ -164,16 +164,22 @@ You can run each stage independently and view real-time figures and console metr
   ```matlab
   run('01_channel_modeling/test_channel_statistics.m')
   ```
-* **Description**: Simulates 15,000 Kronecker channel realizations. Analyzes how spatial correlation ($\rho$) causes ill-conditioning ($\kappa(\mathbf{H}) > 10$) and rank collapse.
-* **Output Plots**: `01_channel_modeling/figures/singular_value_pdf.png`, `condition_number_vs_correlation.png`
+* **Description**: Simulates 15,000 Kronecker channel realizations. Analyzes how spatial correlation (ρ) causes ill-conditioning (κ(H) > 10) and rank collapse.
+* **Generated Visualizations**:
+  
+  ![Singular Value PDF](01_channel_modeling/figures/singular_value_pdf.png)
+  ![Condition Number vs Correlation](01_channel_modeling/figures/condition_number_vs_correlation.png)
 
 #### Step 2: Baseline Comparison (Alamouti STBC vs Linear ZF/MMSE)
 * **Command**:
   ```matlab
   run('02_baseline_transceivers/run_baseline_comparison.m')
   ```
-* **Description**: Compares $2 \times 2$ Alamouti STBC ($d=4$, Rate=1) against Linear Spatial Multiplexing ($r=2$). Quantifies ZF noise amplification in correlated channels.
-* **Output Plots**: `02_baseline_transceivers/figures/alamouti_vs_sm_ber.png`, `zf_noise_amplification_analysis.png`
+* **Description**: Compares 2x2 Alamouti STBC (d=4, Rate=1) against Linear Spatial Multiplexing (r=2). Quantifies ZF noise amplification in correlated channels.
+* **Generated Visualizations**:
+  
+  ![Alamouti vs Spatial Multiplexing BER](02_baseline_transceivers/figures/alamouti_vs_sm_ber.png)
+  ![ZF Noise Amplification](02_baseline_transceivers/figures/zf_noise_amplification_analysis.png)
 
 #### Step 3: Capacity Optimization (SVD + Iterative Water-Filling)
 * **Command**:
@@ -181,23 +187,32 @@ You can run each stage independently and view real-time figures and console metr
   run('03_optimization_svd_waterfilling/run_capacity_optimization.m')
   ```
 * **Description**: Implements SVD eigen-beamforming and exact iterative Water-Filling power allocation across spatial modes.
-* **Output Plots**: `03_optimization_svd_waterfilling/figures/capacity_wf_vs_equal_power.png`, `capacity_gain_vs_correlation.png`
+* **Generated Visualizations**:
+  
+  ![Capacity Water-Filling vs Equal Power](03_optimization_svd_waterfilling/figures/capacity_wf_vs_equal_power.png)
+  ![Capacity Gain vs Correlation](03_optimization_svd_waterfilling/figures/capacity_gain_vs_correlation.png)
 
 #### Step 4: Adaptive Mode Switching (Effective Goodput Optimization)
 * **Command**:
   ```matlab
   run('04_adaptive_mode_switching/run_adaptive_switching_simulation.m')
   ```
-* **Description**: Dynamically switches between Diversity Mode (STBC) and Multiplexing Mode (SVD-WF) using instantaneous SNR and $\kappa(\mathbf{H})$ thresholds, achieving the upper goodput envelope.
-* **Output Plots**: `04_adaptive_mode_switching/figures/effective_goodput_envelope.png`, `mode_switching_decision_boundary.png`
+* **Description**: Dynamically switches between Diversity Mode (STBC) and Multiplexing Mode (SVD-WF) using instantaneous SNR and condition number κ(H) thresholds, achieving the upper goodput envelope.
+* **Generated Visualizations**:
+  
+  ![Effective Goodput Envelope](04_adaptive_mode_switching/figures/effective_goodput_envelope.png)
+  ![Adaptive Mode Decision Regions](04_adaptive_mode_switching/figures/mode_switching_decision_boundary.png)
 
-#### Step 5: Advanced Non-Linear Receivers (Ordered MMSE-SIC / V-BLAST)
+#### Step 5: Advanced Non-Linear Receivers & Simulink System Testbench
 * **Command**:
   ```matlab
   run('05_simulink_and_advanced_receivers/run_sic_simulation.m')
   ```
-* **Description**: Evaluates Successive Interference Cancellation (V-BLAST) with SNR ordering. Delivers $\approx 2.5\text{ dB}$ gain over linear MMSE at BER $10^{-3}$.
-* **Output Plots**: `05_simulink_and_advanced_receivers/figures/sic_vs_linear_receivers_ber.png`, `simulink_model_overview.png`
+* **Description**: Evaluates Successive Interference Cancellation (V-BLAST) with SNR ordering. Delivers ≈ 2.5 dB gain over linear MMSE at BER 10^-3.
+* **Generated Visualizations**:
+  
+  ![Simulink System Architecture](05_simulink_and_advanced_receivers/figures/simulink_model_overview.png)
+  ![MMSE-SIC vs Linear Receivers](05_simulink_and_advanced_receivers/figures/sic_vs_linear_receivers_ber.png)
 
 #### Step 6: Master Benchmark Suite & Zheng-Tse DMT Bound
 * **Command**:
@@ -205,7 +220,10 @@ You can run each stage independently and view real-time figures and console metr
   run('06_master_runner_and_benchmarks/main_benchmark_suite.m')
   ```
 * **Description**: Executes the unified testbench, computes the theoretical Zheng-Tse DMT bound $d^{\ast}(r) = (2-r)^2$, and exports the consolidated 4-panel executive dashboard.
-* **Output Plots**: `06_master_runner_and_benchmarks/figures/master_comprehensive_summary.png`, `dmt_diversity_multiplexing_curve.png`
+* **Generated Visualizations**:
+  
+  ![Master Comprehensive Summary](06_master_runner_and_benchmarks/figures/master_comprehensive_summary.png)
+  ![DMT Trade-off Curve](06_master_runner_and_benchmarks/figures/dmt_diversity_multiplexing_curve.png)
 
 #### ⚡ Live Waveforms, Constellation Scopes & Water-Filling Tank Visualizer
 * **Command**:
@@ -214,6 +232,7 @@ You can run each stage independently and view real-time figures and console metr
   ```
 * **Description**: Opens a 6-panel real-time visual diagnostic displaying I/Q baseband waveforms, received faded signals, transmitter/receiver scatter constellations, MMSE-SIC equalized clusters, and water-filling power tanks.
 * **Output Diagnostic Plot**:
+  
   ![Live Waveforms and Constellations](docs/figures/live_waveforms_and_constellations.png)
 
 ---

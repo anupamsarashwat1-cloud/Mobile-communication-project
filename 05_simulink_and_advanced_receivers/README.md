@@ -71,6 +71,9 @@ graph LR
     end
 ```
 
+### Simulink Block Diagram Model Overview
+![Simulink System Architecture](figures/simulink_model_overview.png)
+
 ### Simulink Block Parameters
 * **Binary Generator:** Sample time T_s = 1e-6 s, Probability of zero = 0.5.
 * **MIMO Channel Block:** Rayleigh multipath flat-fading, 2 inputs, 2 outputs with Kronecker spatial correlation R_Tx, R_Rx.
