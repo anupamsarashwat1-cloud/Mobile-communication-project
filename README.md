@@ -1,34 +1,30 @@
-<div align="center">
+<p align="center">
+  <img src="assets/smvdu_logo.png" alt="Shri Mata Vaishno Devi University" width="160" />
+</p>
 
-  <img src="assets/smvdu_logo.png" alt="Shri Mata Vaishno Devi University" width="140"/>
+<h1 align="center">Shri Mata Vaishno Devi University</h1>
+<h3 align="center">Department of Electronics & Communication Engineering</h3>
+<p align="center"><b>B.Tech 7th Semester Capstone Project | Course: Mobile Communication (ECL DC 401)</b></p>
 
-  # Shri Mata Vaishno Devi University
-  ### Department of Electronics & Communication Engineering
-  **B.Tech 7th Semester Capstone Project | Course: Mobile Communication (ECL DC 401)**
+---
 
-  ---
+<h1 align="center">MIMO Multiplexing Efficiency Optimization for Fixed Antenna Configurations in 5G</h1>
 
-  # MIMO Multiplexing Efficiency Optimization for Fixed Antenna Configurations in 5G
-
-  [![University](https://img.shields.io/badge/University-SMVDU%20Katra-orange.svg)](#)
-  [![Course](https://img.shields.io/badge/Course-ECL%20DC%20401%20Mobile%20Communication-blue.svg)](#)
-  [![Semester](https://img.shields.io/badge/Semester-7th%20Sem%20B.Tech-purple.svg)](#)
-  [![Platform](https://img.shields.io/badge/Platform-MATLAB%20%26%20Simulink-red.svg)](#)
-  [![Status](https://img.shields.io/badge/Status-Complete-brightgreen.svg)](#)
-  [![License](https://img.shields.io/badge/License-MIT-green.svg)](#)
-
-</div>
+<p align="center">
+  <a href="#"><img src="https://img.shields.io/badge/University-SMVDU%20Katra-orange.svg" alt="University" /></a>
+  <a href="#"><img src="https://img.shields.io/badge/Course-ECL%20DC%20401%20Mobile%20Communication-blue.svg" alt="Course" /></a>
+  <a href="#"><img src="https://img.shields.io/badge/Semester-7th%20Sem%20B.Tech-purple.svg" alt="Semester" /></a>
+  <a href="#"><img src="https://img.shields.io/badge/Platform-MATLAB%20%26%20Simulink-red.svg" alt="Platform" /></a>
+  <a href="#"><img src="https://img.shields.io/badge/Status-Complete-brightgreen.svg" alt="Status" /></a>
+  <a href="#"><img src="https://img.shields.io/badge/License-MIT-green.svg" alt="License" /></a>
+</p>
 
 ---
 
 ## 👥 Project Team Members
 
-<div align="center">
-
-| <img src="assets/team/anupam_sarashwat.png" width="140" height="160" style="border-radius: 8px; object-fit: cover;"/><br> **Anupam Sarashwat**<br> `Entry No: 23bec014` | <img src="assets/team/harsh_mishra.png" width="140" height="160" style="border-radius: 8px; object-fit: cover;"/><br> **Harsh Mishra**<br> `Entry No: 23bec027` | <img src="assets/team/om_kumar.jpg" width="140" height="160" style="border-radius: 8px; object-fit: cover;"/><br> **Om Kumar**<br> `Entry No: 23bec038` | <img src="assets/team/ashmit_raj.png" width="140" height="160" style="border-radius: 8px; object-fit: cover;"/><br> **Ashmit Raj**<br> `Entry No: 23bec017` |
+| <img src="assets/team/anupam_sarashwat.png" width="160" alt="Anupam Sarashwat" /><br>**Anupam Sarashwat**<br>`Entry No: 23bec014`<br><sub>ECE, 7th Semester</sub> | <img src="assets/team/harsh_mishra.png" width="160" alt="Harsh Mishra" /><br>**Harsh Mishra**<br>`Entry No: 23bec027`<br><sub>ECE, 7th Semester</sub> | <img src="assets/team/om_kumar.png" width="160" alt="Om Kumar" /><br>**Om Kumar**<br>`Entry No: 23bec038`<br><sub>ECE, 7th Semester</sub> | <img src="assets/team/ashmit_raj.png" width="160" alt="Ashmit Raj" /><br>**Ashmit Raj**<br>`Entry No: 23bec017`<br><sub>ECE, 7th Semester</sub> |
 |:---:|:---:|:---:|:---:|
-
-</div>
 
 ---
 
@@ -38,9 +34,9 @@ In fixed Multiple-Input Multiple-Output (MIMO) antenna geometries (such as $2 \t
 
 ### 🎯 Professor's Handwritten Directive:
 
-<div align="center">
-  <img src="assets/professor_handwritten_directive.png" alt="Professor's Handwritten Directive: Multiplexing efficiencies - optimize for fixed no of MIMOs" width="600" style="border-radius: 8px; border: 1px solid #e1e4e8;"/>
-</div>
+<p align="center">
+  <img src="assets/professor_handwritten_directive.png" alt="Professor Directive: Multiplexing efficiencies - optimize for fixed no of MIMOs" width="600" />
+</p>
 
 > **"Multiplexing efficiencies — optimize for fixed no of MIMO"**
 
