@@ -1,0 +1,19 @@
+# MATLAB specific files
+*.asv
+*.m~
+*.slxc
+*.autosave
+*.mex*
+slprj/
+*.mat
+*.log
+!sample_data.mat
+
+# Windows / OS artifacts
+Thumbs.db
+Desktop.ini
+.DS_Store
+
+# Temporary files
+*.tmp
+*.bak
