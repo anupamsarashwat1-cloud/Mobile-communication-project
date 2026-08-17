@@ -37,6 +37,11 @@
 In fixed Multiple-Input Multiple-Output (MIMO) antenna geometries (such as $2 \times 2$ or $4 \times 4$ in 5G NR user devices), a fundamental tension exists between **link reliability (diversity gain)** and **data throughput (multiplexing gain)**. 
 
 ### 🎯 Professor's Handwritten Directive:
+
+<div align="center">
+  <img src="assets/professor_handwritten_directive.png" alt="Professor's Handwritten Directive: Multiplexing efficiencies - optimize for fixed no of MIMOs" width="600" style="border-radius: 8px; border: 1px solid #e1e4e8;"/>
+</div>
+
 > **"Multiplexing efficiencies — optimize for fixed no of MIMO"**
 
 This repository provides an end-to-end mathematical, algorithmic, and simulation-based engineering framework that optimizes **multiplexing efficiency**, **ergodic capacity**, and **effective goodput** for fixed MIMO antenna configurations.

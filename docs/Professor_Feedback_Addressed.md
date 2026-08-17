@@ -1,6 +1,11 @@
 # Traceability Matrix: Addressing Professor's Directive
 
 ## 1. Professor's Handwritten Directive
+
+<div align="center">
+  <img src="../assets/professor_handwritten_directive.png" alt="Professor's Handwritten Directive: Multiplexing efficiencies - optimize for fixed no of MIMOs" width="600" style="border-radius: 8px; border: 1px solid #e1e4e8;"/>
+</div>
+
 > **"Multiplexing efficiencies — optimize for fixed no of MIMO"**
 
 ---
