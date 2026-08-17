@@ -50,10 +50,10 @@ where $\mu = 1/\lambda$ is the **water level** determined by the constraint $\su
 
 ```mermaid
 graph LR
-    A[Low SNR Regime] --> B[Water-Filling Pours All Power to sigma_1]
-    B --> C[Acts as Optimal Beamformer / Diversity]
-    D[High SNR Regime] --> E[Water Level Exceeds 1/SNR_i for All Modes]
-    E --> F[Pours Equal Power across all streams: Full Multiplexing]
+    A["Low SNR Regime"] --> B["Water-Filling Pours All Power to sigma_1"]
+    B --> C["Acts as Optimal Beamformer / Diversity"]
+    D["High SNR Regime"] --> E["Water Level Exceeds 1/SNR for All Modes"]
+    E --> F["Pours Equal Power across all streams: Full Multiplexing"]
 ```
 
 ### 4.1 Ergodic Spectral Efficiency vs SNR

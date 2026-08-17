@@ -52,11 +52,12 @@ $$\mathbf{W}_{MMSE} = (\mathbf{H}^H\mathbf{H} + \sigma_n^2 N_t \mathbf{I}_{N_t})
 
 ```mermaid
 graph TD
-    A[Fixed 2x2 MIMO System] --> B[Alamouti STBC Mode]
-    A --> C[Spatial Multiplexing Mode]
-    B --> D[Diversity Order d=4, Steep BER slope, 1 stream]
-    C --> E[Rate = 2 streams, Shallow BER slope, Noise amplification in ZF]
-    D & E --> F[Trade-Off: Diversity vs. Multiplexing]
+    A["Fixed 2x2 MIMO System"] --> B["Alamouti STBC Mode"]
+    A --> C["Spatial Multiplexing Mode"]
+    B --> D["Diversity Order d=4, Steep BER slope, 1 stream"]
+    C --> E["Rate = 2 streams, Shallow BER slope, Noise amplification in ZF"]
+    D --> F["Trade-Off: Diversity vs. Multiplexing"]
+    E --> F
 ```
 
 ### 4.1 Comparative BER Performance

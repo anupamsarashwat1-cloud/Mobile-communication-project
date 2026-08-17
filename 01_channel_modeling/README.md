@@ -47,10 +47,10 @@ $$\kappa(\mathbf{H}) = \frac{\sigma_{max}(\mathbf{H})}{\sigma_{min}(\mathbf{H})}
 
 ```mermaid
 graph LR
-    A[Spatial Correlation rho Increases] --> B[Singular Value Disparity sigma_1 >> sigma_2]
-    B --> C[Condition Number kappa(H) Explodes]
-    C --> D[Rank Deficient Channel: Spatial Multiplexing Fails]
-    C --> E[Requires Adaptive Optimization / Water-Filling]
+    A["Spatial Correlation rho Increases"] --> B["Singular Value Disparity: sigma_1 >> sigma_2"]
+    B --> C["Condition Number kappa(H) Explodes"]
+    C --> D["Rank Deficient Channel: Spatial Multiplexing Fails"]
+    C --> E["Requires Adaptive Optimization / Water-Filling"]
 ```
 
 ### 4.1 Singular Value Distribution

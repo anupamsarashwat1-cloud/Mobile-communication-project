@@ -43,12 +43,13 @@ In our fixed $2 \times 2$ QPSK implementation, optimal threshold boundaries are 
 
 ```mermaid
 graph TD
-    A[Evaluate Channel Matrix H & SNR gamma] --> B{SNR >= 8 dB AND kappa <= 4.5 ?}
-    B -- No --> C[Mode 0: Transmit 1 Stream via Alamouti STBC]
-    B -- Yes --> D[Mode 1: Transmit 2 Streams via Spatial Multiplexing]
-    C --> E[Guarantees Low Packet Error Rate at Low SNR]
-    D --> F[Delivers 2x Peak Throughput at High SNR]
-    E & F --> G[Result: Perfect Goodput Upper Envelope]
+    A["Evaluate Channel Matrix H and SNR gamma"] --> B{"SNR >= 8 dB and kappa <= 4.5?"}
+    B -- "No" --> C["Mode 0: Transmit 1 Stream via Alamouti STBC"]
+    B -- "Yes" --> D["Mode 1: Transmit 2 Streams via Spatial Multiplexing"]
+    C --> E["Guarantees Low Packet Error Rate at Low SNR"]
+    D --> F["Delivers 2x Peak Throughput at High SNR"]
+    E --> G["Result: Perfect Goodput Upper Envelope"]
+    F --> G
 ```
 
 ### 4.1 Effective Goodput Optimization Envelope

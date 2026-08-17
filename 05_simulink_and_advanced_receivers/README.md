@@ -35,21 +35,21 @@ $$k_1 = \arg\max_{i \in \{1, 2\}} \text{SINR}_i$$
 
 ```mermaid
 graph LR
-    subgraph Transmitter
-        A[Bernoulli Binary Generator] --> B[QAM Modulator]
-        B --> C[Spatial Demux / STBC Encoder]
+    subgraph Transmitter["Transmitter"]
+        A["Bernoulli Binary Generator"] --> B["QAM Modulator"]
+        B --> C["Spatial Demux / STBC Encoder"]
     end
-    subgraph Channel
-        C --> D[2x2 Correlated Rayleigh Fading Channel]
-        D --> E[AWGN Noise Channel]
+    subgraph Channel["Channel"]
+        C --> D["2x2 Correlated Rayleigh Fading Channel"]
+        D --> E["AWGN Noise Channel"]
     end
-    subgraph Receiver
-        E --> F[MIMO Equalizer / SIC Detector]
-        F --> G[QAM Demodulator]
+    subgraph Receiver["Receiver"]
+        E --> F["MIMO Equalizer / SIC Detector"]
+        F --> G["QAM Demodulator"]
     end
-    subgraph Diagnostics
-        G --> H[Error Rate Calculation Block]
-        F --> I[Constellation Diagram Scope]
+    subgraph Diagnostics["Diagnostics"]
+        G --> H["Error Rate Calculation Block"]
+        F --> I["Constellation Diagram Scope"]
     end
 ```
 
