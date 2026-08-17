@@ -17,13 +17,14 @@ Effective throughput (Goodput $T_{eff}$) accounts for the retransmission / frame
 $$T_{eff} = R_{mode} \times (1 - \text{FER}) \quad \text{[bps/Hz]}$$
 
 Where:
-* $R_{mode} = \begin{cases} 1 \cdot \log_2(M), & \text{Mode 0 (Alamouti STBC Diversity)} \\ 2 \cdot \log_2(M), & \text{Mode 1 (Spatial Multiplexing Rank-2)} \end{cases}$
+* $R_{mode} = 1 \cdot \log_2(M)$ for Mode 0 (Alamouti STBC Diversity)
+* $R_{mode} = 2 \cdot \log_2(M)$ for Mode 1 (Spatial Multiplexing Rank-2)
 * $\text{FER} = 1 - (1 - \text{BER})^{L_{packet}}$
 
 ### 2.2 Adaptive Switching Decision Rules
 The controller computes the condition number $\kappa(\mathbf{H}) = \frac{\sigma_1}{\sigma_2}$ and instantaneous SNR $\gamma$ and maps the channel state:
 
-$$\text{Mode} = \begin{cases} \text{Alamouti STBC (Diversity)}, & \text{if } \gamma < \gamma_{th} \text{ or } \kappa(\mathbf{H}) > \kappa_{th} \\ \text{Spatial Multiplexing (Rank-2)}, & \text{if } \gamma \ge \gamma_{th} \text{ and } \kappa(\mathbf{H}) \le \kappa_{th} \end{cases}$$
+$$\text{Mode} = \begin{cases} \text{Alamouti STBC (Diversity Mode)}, & \text{if } \gamma < \gamma_{th} \text{ or } \kappa(\mathbf{H}) > \kappa_{th} \\ \text{Spatial Multiplexing (Rank-2 Mode)}, & \text{if } \gamma \ge \gamma_{th} \text{ and } \kappa(\mathbf{H}) \le \kappa_{th} \end{cases}$$
 
 In our fixed $2 \times 2$ QPSK implementation, optimal threshold boundaries are empirically calibrated at $\gamma_{th} = 8.0\text{ dB}$ and $\kappa_{th} = 4.5$.
 
@@ -60,4 +61,3 @@ graph TD
 
 1. **Eliminating the Low-SNR Collapse:** While fixed Spatial Multiplexing delivers zero goodput below $6\text{ dB}$ due to packet drops, the adaptive controller gracefully retains the full diversity goodput of Alamouti STBC.
 2. **200% Peak Rate Extraction:** As soon as channel conditions permit ($\text{SNR} > 12\text{ dB}$), the adaptive controller shifts $100\%$ of frames to Spatial Multiplexing, unlocking $4.0\text{ bps/Hz}$ (for QPSK).
-

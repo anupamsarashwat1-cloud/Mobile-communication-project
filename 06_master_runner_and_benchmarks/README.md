@@ -11,9 +11,12 @@ In fundamental MIMO information theory (Zheng & Tse, IEEE Trans. Inf. Theory, 20
 
 ### 2.1 Formal Definitions
 * **Spatial Multiplexing Gain ($r$):** The asymptotic data rate scaling:
-  $$r = \lim_{\text{SNR} \to \infty} \frac{R(\text{SNR})}{\log_2(\text{SNR})}$$
+
+$$r = \lim_{\text{SNR} \to \infty} \frac{R(\text{SNR})}{\log_2(\text{SNR})}$$
+
 * **Diversity Gain ($d$):** The asymptotic error probability decay slope:
-  $$d = -\lim_{\text{SNR} \to \infty} \frac{\log P_e(\text{SNR})}{\log(\text{SNR})}$$
+
+$$d = -\lim_{\text{SNR} \to \infty} \frac{\log P_e(\text{SNR})}{\log(\text{SNR})}$$
 
 ### 2.2 Optimal Bound Formulation
 For a block-fading channel with coherence time $T \ge N_t + N_r - 1$, the optimal trade-off curve $d^*(r)$ is given by the piecewise linear function connecting points $(r, d^*(r))$ for integer $r \in [0, \min(N_t, N_r)]$:
@@ -51,7 +54,5 @@ $$d^*(r) = (N_t - r)(N_r - r)$$
 
 In the MATLAB Command Window, simply run:
 ```matlab
-cd '06_master_runner_and_benchmarks'
-main_benchmark_suite
+run('06_master_runner_and_benchmarks/main_benchmark_suite.m')
 ```
-

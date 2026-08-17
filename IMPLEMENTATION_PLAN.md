@@ -12,21 +12,33 @@
 
 The core scientific goal is to resolve the fundamental trade-off between **Spatial Diversity** (reliability/robustness, maximizing diversity order $d$) and **Spatial Multiplexing** (throughput/spectral efficiency, maximizing multiplexing gain $r$) for a **fixed $2 \times 2$ MIMO antenna configuration**.
 
-$$\mathbf{y} = \mathbf{H}\mathbf{x} + \mathbf{n}, \quad \mathbf{H} \in \mathbb{C}^{2 \times 2}, \quad \mathbf{n} \sim \mathcal{CN}(0, \sigma^2 \mathbf{I}_2)$$
+$$\mathbf{y} = \mathbf{H}\mathbf{x} + \mathbf{n}, \quad \mathbf{H} \in \mathbb{C}^{2 \times 2}, \quad \mathbf{n} \sim \mathcal{CN}(0, \sigma_n^2 \mathbf{I}_2)$$
 
 ### Key Mathematical Pillars:
 1. **Spatial Correlation (Kronecker Model)**:
-   $$\mathbf{H} = \mathbf{R}_{rx}^{1/2} \mathbf{H}_{w} \mathbf{R}_{tx}^{1/2}$$
+
+$$\mathbf{H} = \mathbf{R}_{Rx}^{1/2} \mathbf{H}_{iid} \left(\mathbf{R}_{Tx}^{1/2}\right)^T$$
+
 2. **Channel Condition Number ($\kappa(\mathbf{H})$)**:
-   $$\kappa(\mathbf{H}) = \frac{\sigma_{max}(\mathbf{H})}{\sigma_{min}(\mathbf{H})}$$
+
+$$\kappa(\mathbf{H}) = \frac{\sigma_{max}(\mathbf{H})}{\sigma_{min}(\mathbf{H})}$$
+
 3. **Singular Value Decomposition & Optimal Water-Filling**:
-   $$\mathbf{H} = \mathbf{U} \mathbf{\Sigma} \mathbf{V}^H, \quad P_i^* = \left( \mu - \frac{\sigma_n^2}{\sigma_i^2} \right)^+, \quad \sum_{i=1}^{r} P_i^* = P_{total}$$
+
+$$\mathbf{H} = \mathbf{U} \mathbf{\Sigma} \mathbf{V}^H$$
+
+$$P_i^* = \max \left( 0, \; \mu - \frac{\sigma_n^2}{\sigma_i^2} \right), \quad \sum_{i=1}^{r} P_i^* = P_{total}$$
+
 4. **Adaptive Rank Switching**:
-   $$\text{Mode} = \begin{cases} \text{Rank-2 (Spatial Multiplexing)}, & \text{if } \text{SNR} \ge \gamma_{th} \text{ and } \kappa(\mathbf{H}) \le \kappa_{th} \\ \text{Rank-1 (Alamouti STBC Diversity)}, & \text{otherwise} \end{cases}$$
+
+$$\text{Mode} = \begin{cases} \text{Rank-2 (Spatial Multiplexing)}, & \text{if } \gamma \ge 8.0\text{ dB} \text{ and } \kappa(\mathbf{H}) \le 4.5 \\ \text{Rank-1 (Alamouti STBC Diversity)}, & \text{otherwise} \end{cases}$$
+
 5. **Ordered Non-Linear Successive Interference Cancellation (MMSE-SIC / V-BLAST)**:
    Cancels the strongest stream post-MMSE filtering to achieve full second-order diversity on the remaining stream.
+
 6. **Zheng-Tse Diversity-Multiplexing Trade-off (DMT) Bound**:
-   $$d^*(r) = (N_t - r)(N_r - r) = (2-r)^2$$
+
+$$d^*(r) = (N_t - r)(N_r - r) = (2-r)^2$$
 
 ---
 

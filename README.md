@@ -62,27 +62,31 @@ Every stage in this repository is fully self-contained with its own dedicated co
 ## 3. Mathematical Foundations
 
 ### 3.1 Water-Filling Power Allocation
+
 $$\max_{\{P_i\}} \sum_{i=1}^{r} \log_2 \left( 1 + \frac{P_i \sigma_i^2}{\sigma_n^2} \right) \quad \text{subject to } \sum_{i=1}^{r} P_i = P_{total}, \; P_i \ge 0$$
-$$\implies P_i^* = \max\left(0, \; \mu - \frac{\sigma_n^2}{\sigma_i^2}\right)$$
+
+$$P_i^* = \max\left(0, \; \mu - \frac{\sigma_n^2}{\sigma_i^2}\right)$$
 
 ### 3.2 Dynamic Rank Adaptation Rule
-$$\text{Selected Mode} = \begin{cases} \text{Alamouti STBC (Diversity Mode)}, & \text{if } \gamma < 8\text{ dB} \text{ or } \kappa(\mathbf{H}) > 4.5 \\ \text{Spatial Multiplexing (SVD-WF Mode)}, & \text{if } \gamma \ge 8\text{ dB} \text{ and } \kappa(\mathbf{H}) \le 4.5 \end{cases}$$
+
+$$\text{Mode} = \begin{cases} \text{Alamouti STBC (Diversity Mode)}, & \text{if } \gamma < 8.0\text{ dB} \text{ or } \kappa(\mathbf{H}) > 4.5 \\ \text{Spatial Multiplexing (SVD-WF Mode)}, & \text{if } \gamma \ge 8.0\text{ dB} \text{ and } \kappa(\mathbf{H}) \le 4.5 \end{cases}$$
 
 ### 3.3 Zheng-Tse Diversity-Multiplexing Trade-off (DMT)
-$$d^*(r) = (N_t - r)(N_r - r), \quad 0 \le r \le \min(N_t, N_r)$$
+
+$$d^*(r) = (N_t - r)(N_r - r) = (2-r)^2, \quad 0 \le r \le \min(N_t, N_r)$$
 
 ---
 
 ## 4. Key Quantitative Results
 
-| Operating Scheme | Diversity Order ($d$) | Multiplexing Gain ($r$) | BER @ 10 dB | Effective Goodput @ 10 dB | Ergodic Capacity @ 20 dB |
+| Operating Scheme | Diversity Order ($d$) | Multiplexing Gain ($r$) | BER @ 10 dB | Effective Goodput @ 10 dB | Ergodic Capacity @ 20 dB ($\rho=0.3$) |
 |---|:---:|:---:|:---:|:---:|:---:|
-| **SISO Baseline (1x1)** | $1$ | $1$ | $2.3 \times 10^{-2}$ | $1.90\text{ bps/Hz}$ | $6.65\text{ bps/Hz}$ |
-| **Alamouti STBC (2x2)** | $4$ | $1$ | $4.1 \times 10^{-4}$ | $2.00\text{ bps/Hz}$ | $6.65\text{ bps/Hz}$ |
-| **Spatial Mux (Linear ZF)** | $1$ | $2$ | $5.2 \times 10^{-2}$ | $1.20\text{ bps/Hz}$ | $13.20\text{ bps/Hz}$ |
-| **Spatial Mux (Linear MMSE)** | $1$ | $2$ | $1.8 \times 10^{-2}$ | $2.40\text{ bps/Hz}$ | $13.20\text{ bps/Hz}$ |
-| **Spatial Mux (MMSE-SIC)** | $2$ | $2$ | $4.9 \times 10^{-3}$ | $3.10\text{ bps/Hz}$ | $13.20\text{ bps/Hz}$ |
-| **SVD + Water-Filling (Optimized)** | Adaptive | Adaptive | $< 10^{-4}$ | **$3.85\text{ bps/Hz}$** | **$14.85\text{ bps/Hz}$** |
+| **SISO Baseline (1x1)** | $1$ | $1$ | $2.3 \times 10^{-2}$ | $1.20\text{ bps/Hz}$ | $5.90\text{ bps/Hz}$ |
+| **Alamouti STBC (2x2)** | $4$ | $1$ | $9.50 \times 10^{-4}$ | $1.70\text{ bps/Hz}$ | $5.90\text{ bps/Hz}$ |
+| **Spatial Mux (Linear ZF)** | $1$ | $2$ | $5.00 \times 10^{-1}$ | $0.00\text{ bps/Hz}$ | $10.91\text{ bps/Hz}$ |
+| **Spatial Mux (Linear MMSE)** | $1$ | $2$ | $5.00 \times 10^{-1}$ | $0.00\text{ bps/Hz}$ | $10.91\text{ bps/Hz}$ |
+| **Spatial Mux (MMSE-SIC)** | $2$ | $2$ | $5.01 \times 10^{-1}$ | $0.00\text{ bps/Hz}$ | $10.91\text{ bps/Hz}$ |
+| **SVD + Water-Filling (Optimized)** | Adaptive | Adaptive | Adaptive | **$1.70\text{ bps/Hz}$** | **$11.07\text{ bps/Hz}$** |
 
 ---
 

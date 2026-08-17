@@ -15,17 +15,22 @@ The full MIMO channel matrix $\mathbf{H} \in \mathbb{C}^{N_r \times N_t}$ with t
 $$\mathbf{H} = \mathbf{R}_{Rx}^{1/2} \mathbf{H}_{iid} \left(\mathbf{R}_{Tx}^{1/2}\right)^T$$
 
 Where:
-* $\mathbf{H}_{iid} \sim \mathcal{CN}(0, \mathbf{I}_{N_r} \otimes \mathbf{I}_{N_t})$ is the uncorrelated independent identically distributed Rayleigh fading matrix whose elements satisfy $h_{ij} = \frac{1}{\sqrt{2}}(u + jv)$ with $u, v \sim \mathcal{N}(0, 1)$.
-* $\mathbf{R}_{Tx}$ and $\mathbf{R}_{Rx}$ are modeled using the exponential correlation model:
-  $$[\mathbf{R}_{Tx}]_{i,j} = \rho_{tx}^{|i - j|}, \quad [\mathbf{R}_{Rx}]_{i,j} = \rho_{rx}^{|i - j|}$$
-  where $\rho \in [0, 1)$ is the spatial correlation coefficient.
+* $\mathbf{H}_{iid}$ is the uncorrelated independent identically distributed Rayleigh fading matrix with complex Gaussian entries $h_{ij} = \frac{1}{\sqrt{2}}(u + jv)$ where $u, v \sim \mathcal{N}(0, 1)$.
+* $\mathbf{R}_{Tx}$ and $\mathbf{R}_{Rx}$ are the spatial correlation matrices modeled using the exponential correlation model:
+
+$$[\mathbf{R}_{Tx}]_{i,j} = \rho_{tx}^{|i - j|}, \quad [\mathbf{R}_{Rx}]_{i,j} = \rho_{rx}^{|i - j|}$$
+
+where $\rho \in [0, 1)$ is the spatial correlation coefficient.
 
 ### 2.2 Singular Value Decomposition & Condition Number
 Applying Singular Value Decomposition (SVD):
+
 $$\mathbf{H} = \mathbf{U} \mathbf{\Sigma} \mathbf{V}^H$$
+
 where $\mathbf{\Sigma} = \text{diag}(\sigma_1, \sigma_2, \dots, \sigma_{\min(N_t, N_r)})$ contains ordered singular values $\sigma_1 \ge \sigma_2 \ge \dots \ge 0$.
 
 The **Condition Number** of the channel matrix is defined as:
+
 $$\kappa(\mathbf{H}) = \frac{\sigma_{max}(\mathbf{H})}{\sigma_{min}(\mathbf{H})} = \frac{\sigma_1}{\sigma_2}$$
 
 * **Well-Conditioned Channel ($\kappa \approx 1$):** Spatial sub-channels are orthogonal; ideal for full rank spatial multiplexing.
@@ -61,4 +66,3 @@ graph LR
 
 1. **Singular Value Degradation:** As $\rho \to 1$, the second singular value $\sigma_2 \to 0$, concentrating all channel energy into the dominant spatial mode $\sigma_1$.
 2. **Exponential Condition Number Growth:** At $\rho = 0$, mean condition number is $\approx 3.5$. At $\rho = 0.9$, mean condition number exceeds $25$, confirming the necessity of adaptive rank and water-filling power allocation.
-
