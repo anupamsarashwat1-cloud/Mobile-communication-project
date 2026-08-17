@@ -1,8 +1,15 @@
 # Presentation Slide Deck Outline
 ## MIMO Multiplexing Efficiency Optimization for Fixed Antenna Systems in 5G
 
-**Course:** ECL DC 401 – Mobile Communication  
-**Author:** Individual Project Presentation  
+**Institution:** Shri Mata Vaishno Devi University (SMVDU), Katra, J&K  
+**Department:** Department of Electronics & Communication Engineering  
+**Degree & Semester:** B.Tech — 7th Semester  
+**Course:** Mobile Communication (ECL DC 401)  
+**Project Team:**
+* **Anupam Sarashwat** (`23bec014`)
+* **Harsh Mishra** (`23bec027`)
+* **Om Kumar** (`23bec038`)
+* **Ashmit Raj** (`23bec017`)  
 **Platform:** MATLAB & Simulink (Zero-Toolbox Compatible)  
 **Repository:** [https://github.com/anupamsarashwat1-cloud/Mobile-communication-project](https://github.com/anupamsarashwat1-cloud/Mobile-communication-project)
 

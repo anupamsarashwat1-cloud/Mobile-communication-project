@@ -1,9 +1,16 @@
 # Academic Project Report
 ## Multiplexing Efficiency Optimization for Fixed MIMO Systems in 5G Wireless Links
 
-**Course:** ECL DC 401 – Mobile Communication  
+**Institution:** Shri Mata Vaishno Devi University (SMVDU), Katra, J&K  
+**Department:** Department of Electronics & Communication Engineering  
+**Degree & Semester:** B.Tech — 7th Semester  
+**Course:** Mobile Communication (ECL DC 401)  
+**Project Team:**
+* **Anupam Sarashwat** (`23bec014`)
+* **Harsh Mishra** (`23bec027`)
+* **Om Kumar** (`23bec038`)
+* **Ashmit Raj** (`23bec017`)  
 **Platform:** MATLAB & Simulink (Base MATLAB + DSP System Toolbox Compatible)  
-**Author:** Individual Project Submission  
 **Repository:** [https://github.com/anupamsarashwat1-cloud/Mobile-communication-project](https://github.com/anupamsarashwat1-cloud/Mobile-communication-project)
 
 ---

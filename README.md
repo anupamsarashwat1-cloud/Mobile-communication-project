@@ -1,9 +1,34 @@
-# MIMO Multiplexing Efficiency Optimization for Fixed Antenna Configurations in 5G
+<div align="center">
 
-[![Course](https://img.shields.io/badge/Course-ECL%20DC%20401%20Mobile%20Communication-blue.svg)](#)
-[![Platform](https://img.shields.io/badge/Platform-MATLAB%20%26%20Simulink-orange.svg)](#)
-[![Status](https://img.shields.io/badge/Status-Complete-brightgreen.svg)](#)
-[![License](https://img.shields.io/badge/License-MIT-green.svg)](#)
+  <img src="assets/smvdu_logo.png" alt="Shri Mata Vaishno Devi University" width="140"/>
+
+  # Shri Mata Vaishno Devi University
+  ### Department of Electronics & Communication Engineering
+  **B.Tech 7th Semester Capstone Project | Course: Mobile Communication (ECL DC 401)**
+
+  ---
+
+  # MIMO Multiplexing Efficiency Optimization for Fixed Antenna Configurations in 5G
+
+  [![University](https://img.shields.io/badge/University-SMVDU%20Katra-orange.svg)](#)
+  [![Course](https://img.shields.io/badge/Course-ECL%20DC%20401%20Mobile%20Communication-blue.svg)](#)
+  [![Semester](https://img.shields.io/badge/Semester-7th%20Sem%20B.Tech-purple.svg)](#)
+  [![Platform](https://img.shields.io/badge/Platform-MATLAB%20%26%20Simulink-red.svg)](#)
+  [![Status](https://img.shields.io/badge/Status-Complete-brightgreen.svg)](#)
+  [![License](https://img.shields.io/badge/License-MIT-green.svg)](#)
+
+</div>
+
+---
+
+## 👥 Project Team Members
+
+<div align="center">
+
+| <img src="assets/team/anupam_sarashwat.png" width="140" height="160" style="border-radius: 8px; object-fit: cover;"/><br> **Anupam Sarashwat**<br> `Entry No: 23bec014` | <img src="assets/team/harsh_mishra.png" width="140" height="160" style="border-radius: 8px; object-fit: cover;"/><br> **Harsh Mishra**<br> `Entry No: 23bec027` | <img src="assets/team/om_kumar.jpg" width="140" height="160" style="border-radius: 8px; object-fit: cover;"/><br> **Om Kumar**<br> `Entry No: 23bec038` | <img src="assets/team/ashmit_raj.png" width="140" height="160" style="border-radius: 8px; object-fit: cover;"/><br> **Ashmit Raj**<br> `Entry No: 23bec017` |
+|:---:|:---:|:---:|:---:|
+
+</div>
 
 ---
 
@@ -11,7 +36,7 @@
 
 In fixed Multiple-Input Multiple-Output (MIMO) antenna geometries (such as $2 \times 2$ or $4 \times 4$ in 5G NR user devices), a fundamental tension exists between **link reliability (diversity gain)** and **data throughput (multiplexing gain)**. 
 
-### Professor's Directive Addressed:
+### 🎯 Professor's Handwritten Directive:
 > **"Multiplexing efficiencies — optimize for fixed no of MIMO"**
 
 This repository provides an end-to-end mathematical, algorithmic, and simulation-based engineering framework that optimizes **multiplexing efficiency**, **ergodic capacity**, and **effective goodput** for fixed MIMO antenna configurations.
@@ -237,10 +262,19 @@ You can run each stage independently and view real-time figures and console metr
 
 ---
 
-## 7. Author & Course Information
-* **Course:** ECL DC 401 – Mobile Communication
-* **Department:** Electronics & Communication Engineering
+## 7. Institutional & Team Information
+
+* **University:** Shri Mata Vaishno Devi University (SMVDU), Katra, J&K
+* **Degree:** Bachelor of Technology (B.Tech) — 7th Semester
+* **Department:** Department of Electronics & Communication Engineering
+* **Course:** Mobile Communication (ECL DC 401)
 * **Project Title:** MIMO Diversity vs. Spatial Multiplexing Trade-off in 5G Wireless Links: Multiplexing Efficiency Optimization for Fixed Antenna Systems
 * **Repository:** [https://github.com/anupamsarashwat1-cloud/Mobile-communication-project](https://github.com/anupamsarashwat1-cloud/Mobile-communication-project)
+
+### 🎓 Project Team
+1. **Anupam Sarashwat** — `Entry No: 23bec014`
+2. **Harsh Mishra** — `Entry No: 23bec027`
+3. **Om Kumar** — `Entry No: 23bec038`
+4. **Ashmit Raj** — `Entry No: 23bec017`
 
 
