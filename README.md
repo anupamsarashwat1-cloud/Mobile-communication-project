@@ -97,32 +97,103 @@ $$d^*(r) = (N_t - r)(N_r - r), \quad 0 \le r \le \min(N_t, N_r)$$
 
 ---
 
-## 6. Quick Start Guide
+## 6. Step-by-Step Execution Guide (Desktop & Online)
 
-### Zero Toolbox Dependencies
-All core signal processing algorithms, modulation/demodulation routines, density estimators, and condition-number calculations have been engineered natively in `common/`. **No optional or paid toolboxes (Communications/Statistics) are required.**
+### ⚙️ Zero Toolbox Dependencies
+All modulation schemes (BPSK, QPSK, 16-QAM, 64-QAM), demodulators, density estimators, and condition number routines are built natively in `common/`. **No Communications Toolbox or Statistics Toolbox is required.**
 
-### Option A: Interactive MATLAB Desktop GUI (1-Click)
-1. In Windows File Explorer, double-click **`launch_gui.bat`** (or open MATLAB and `cd 'C:\Users\anupa\OneDrive\Documents\Mobile Communication Project'`).
-2. In the MATLAB Command Window, type:
+---
+
+### 🖥️ Option 1: Running on MATLAB Desktop (Local Windows PC)
+
+1. **Locate Project on your PC**:
+   The repository is located at:
+   `C:\Users\anupa\OneDrive\Documents\Mobile Communication Project`
+
+2. **One-Click Launch**:
+   Double-click **`launch_gui.bat`** in Windows Explorer. MATLAB will launch directly into the project directory with all search paths automatically initialized.
+
+3. **Or from within MATLAB Desktop**:
+   Open MATLAB and type in the Command Window:
+   ```matlab
+   cd 'C:\Users\anupa\OneDrive\Documents\Mobile Communication Project'
+   ```
+   *(The `startup.m` script runs automatically and displays the project banner and stage menu).*
+
+4. **Launch Visual Dashboard**:
    ```matlab
    gui_dashboard
    ```
-3. An interactive visual control window will appear with one-click buttons for every stage.
 
-### Option B: MATLAB Online (Web Browser)
-1. Open [MATLAB Online](https://matlab.mathworks.com).
-2. In the Command Window, run:
+---
+
+### 🌐 Option 2: Running on MATLAB Online (Cloud Browser)
+
+1. Open **[MATLAB Online](https://matlab.mathworks.com)** and log in.
+2. In the MATLAB Online **Command Window**, paste and execute:
    ```matlab
    !git clone https://github.com/anupamsarashwat1-cloud/Mobile-communication-project.git
    cd Mobile-communication-project
+   startup
+   ```
+3. Run the interactive GUI:
+   ```matlab
    gui_dashboard
    ```
 
-### Option C: Run Unified Master Benchmark via Script
-```matlab
-run('06_master_runner_and_benchmarks/main_benchmark_suite.m')
-```
+---
+
+### 📝 Option 3: Manual Step-by-Step Stage Execution
+
+You can run each stage independently and view real-time figures and console metrics:
+
+#### Step 1: Channel Modeling & Condition Number Statistics
+* **Command**:
+  ```matlab
+  run('01_channel_modeling/test_channel_statistics.m')
+  ```
+* **Description**: Simulates 15,000 Kronecker channel realizations. Analyzes how spatial correlation ($\rho$) causes ill-conditioning ($\kappa(\mathbf{H}) > 10$) and rank collapse.
+* **Output Plots**: `01_channel_modeling/figures/singular_value_pdf.png`, `condition_number_vs_correlation.png`
+
+#### Step 2: Baseline Comparison (Alamouti STBC vs Linear ZF/MMSE)
+* **Command**:
+  ```matlab
+  run('02_baseline_transceivers/run_baseline_comparison.m')
+  ```
+* **Description**: Compares $2 \times 2$ Alamouti STBC ($d=4$, Rate=1) against Linear Spatial Multiplexing ($r=2$). Quantifies ZF noise amplification in correlated channels.
+* **Output Plots**: `02_baseline_transceivers/figures/alamouti_vs_sm_ber.png`, `zf_noise_amplification_analysis.png`
+
+#### Step 3: Capacity Optimization (SVD + Iterative Water-Filling)
+* **Command**:
+  ```matlab
+  run('03_optimization_svd_waterfilling/run_capacity_optimization.m')
+  ```
+* **Description**: Implements SVD eigen-beamforming and exact iterative Water-Filling power allocation across spatial modes.
+* **Output Plots**: `03_optimization_svd_waterfilling/figures/capacity_wf_vs_equal_power.png`, `capacity_gain_vs_correlation.png`
+
+#### Step 4: Adaptive Mode Switching (Effective Goodput Optimization)
+* **Command**:
+  ```matlab
+  run('04_adaptive_mode_switching/run_adaptive_switching_simulation.m')
+  ```
+* **Description**: Dynamically switches between Diversity Mode (STBC) and Multiplexing Mode (SVD-WF) using instantaneous SNR and $\kappa(\mathbf{H})$ thresholds, achieving the upper goodput envelope.
+* **Output Plots**: `04_adaptive_mode_switching/figures/effective_goodput_envelope.png`, `mode_switching_decision_boundary.png`
+
+#### Step 5: Advanced Non-Linear Receivers (Ordered MMSE-SIC / V-BLAST)
+* **Command**:
+  ```matlab
+  run('05_simulink_and_advanced_receivers/run_sic_simulation.m')
+  ```
+* **Description**: Evaluates Successive Interference Cancellation (V-BLAST) with SNR ordering. Delivers $\approx 2.5\text{ dB}$ gain over linear MMSE at BER $10^{-3}$.
+* **Output Plots**: `05_simulink_and_advanced_receivers/figures/sic_vs_linear_receivers_ber.png`, `simulink_model_overview.png`
+
+#### Step 6: Master Benchmark Suite & Zheng-Tse DMT Bound
+* **Command**:
+  ```matlab
+  run('06_master_runner_and_benchmarks/main_benchmark_suite.m')
+  ```
+* **Description**: Executes the unified testbench, computes the theoretical Zheng-Tse DMT bound $d^*(r) = (2-r)^2$, and exports the consolidated 4-panel executive dashboard.
+* **Output Plots**: `06_master_runner_and_benchmarks/figures/master_comprehensive_summary.png`, `dmt_diversity_multiplexing_curve.png`
 
 ---
 
@@ -131,4 +202,5 @@ run('06_master_runner_and_benchmarks/main_benchmark_suite.m')
 * **Department:** Electronics & Communication Engineering
 * **Project Title:** MIMO Diversity vs. Spatial Multiplexing Trade-off in 5G Wireless Links: Multiplexing Efficiency Optimization for Fixed Antenna Systems
 * **Repository:** [https://github.com/anupamsarashwat1-cloud/Mobile-communication-project](https://github.com/anupamsarashwat1-cloud/Mobile-communication-project)
+
 
