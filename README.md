@@ -204,8 +204,17 @@ You can run each stage independently and view real-time figures and console metr
   ```matlab
   run('06_master_runner_and_benchmarks/main_benchmark_suite.m')
   ```
-* **Description**: Executes the unified testbench, computes the theoretical Zheng-Tse DMT bound $d^*(r) = (2-r)^2$, and exports the consolidated 4-panel executive dashboard.
+* **Description**: Executes the unified testbench, computes the theoretical Zheng-Tse DMT bound $d^{\ast}(r) = (2-r)^2$, and exports the consolidated 4-panel executive dashboard.
 * **Output Plots**: `06_master_runner_and_benchmarks/figures/master_comprehensive_summary.png`, `dmt_diversity_multiplexing_curve.png`
+
+#### ⚡ Live Waveforms, Constellation Scopes & Water-Filling Tank Visualizer
+* **Command**:
+  ```matlab
+  visualize_waveforms_and_constellations
+  ```
+* **Description**: Opens a 6-panel real-time visual diagnostic displaying I/Q baseband waveforms, received faded signals, transmitter/receiver scatter constellations, MMSE-SIC equalized clusters, and water-filling power tanks.
+* **Output Diagnostic Plot**:
+  ![Live Waveforms and Constellations](docs/figures/live_waveforms_and_constellations.png)
 
 ---
 

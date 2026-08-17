@@ -86,11 +86,25 @@ graph LR
 
 ---
 
-## 5. Files in this Folder
+## 5. Live Waveform & Constellation Diagnostic Instrument
+
+In addition to BER curves, the system provides an interactive diagnostic scope showing time-domain waveforms, received faded signals, transmitter/receiver scatter constellations, MMSE-SIC equalized clusters, and water-filling power tanks:
+
+![Live Waveforms and Constellations](../docs/figures/live_waveforms_and_constellations.png)
+
+To run this instrument directly in MATLAB:
+```matlab
+visualize_waveforms_and_constellations
+```
+
+---
+
+## 6. Files in this Folder
 
 | File | Description |
 |---|---|
 | [`mmse_sic_detector.m`](mmse_sic_detector.m) | Non-linear ordered MMSE-SIC (V-BLAST) detection function. |
 | [`run_sic_simulation.m`](run_sic_simulation.m) | Monte Carlo simulation runner comparing MMSE-SIC vs Linear MMSE vs ZF. |
 | [`build_simulink_model.m`](build_simulink_model.m) | Parameter setup and initialization script for the Simulink model. |
+| [`create_and_export_simulink_model.m`](create_and_export_simulink_model.m) | Script creating and configuring the physical Simulink block diagram. |
 | [`figures/`](figures/) | Exported figures and BER curves comparing linear and non-linear receivers. |

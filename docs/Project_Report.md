@@ -103,7 +103,16 @@ The table below summarizes the quantitative performance metrics obtained from Mo
 | **Spatial Mux (MMSE-SIC)** | 2 | 2 | 5.01e-01 | 5.00e-01 | 0.00 bps/Hz | 10.91 bps/Hz |
 | **Adaptive SVD-WF (Optimized)**| Adaptive | Adaptive | Adaptive | Adaptive | **1.70 bps/Hz** | **11.07 bps/Hz** |
 
-### 4.2 Key Findings
+### 4.2 Waveform, Constellation & Physical Layer Diagnostics
+In addition to statistical BER sweeps, the framework provides real-time time-domain I/Q baseband waveforms, spatial fading envelopes, transmitter/receiver scatter constellations, and water-filling power tank levels:
+
+![Live Waveforms and Constellations](figures/live_waveforms_and_constellations.png)
+
+* **Physical Waveform Tracking:** Panel 1 & 2 illustrate the transition from discrete in-phase/quadrature baseband signals at the transmitter to heavily attenuated, multipath-corrupted envelopes at the receiver.
+* **Constellation Recovery:** Panels 3, 4, and 5 reveal how the received scatter cloud is resolved into discrete, tight clusters post-equalization.
+* **Power Tank Allocation:** Panel 6 visually demonstrates how the Water-Filling solver pours power exclusively into sub-channels with sufficient SNR.
+
+### 4.3 Key Analytical Findings
 1. **Diversity Slope & Robustness:** Alamouti STBC exhibits a steep 4th-order diversity slope (d = 4), guaranteeing error-free packet reception at SNR ≥ 16 dB.
 2. **Water-Filling Gains:** At low SNR (SNR ≤ 0 dB) and high spatial correlation (ρ = 0.9), Water-Filling allocates all power to the dominant mode σ_1, providing a **48.5% capacity boost** over equal power.
 3. **Goodput Envelope:** Adaptive Rank Switching completely eliminates low-SNR throughput collapse, dynamically providing 1.70 bps/Hz at 10 dB (via Alamouti) and doubling throughput to 4.0 bps/Hz at high SNR (via Spatial Multiplexing).

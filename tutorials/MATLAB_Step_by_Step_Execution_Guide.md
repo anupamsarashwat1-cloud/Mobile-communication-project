@@ -85,6 +85,7 @@ We have created an interactive Graphical User Interface (GUI) app that allows yo
    - **Stage 4**: Evaluates Adaptive Mode Switching and plots the Goodput envelope.
    - **Stage 5**: Simulates non-linear Ordered MMSE-SIC (V-BLAST) detection.
    - **Stage 6**: Computes the Zheng-Tse DMT theoretical bound.
+   - **⚡ Live Waveforms & Constellation Scopes**: Opens the 6-panel real-time visual diagnostic displaying I/Q baseband waveforms, received faded signals, transmitter/receiver scatter constellations, MMSE-SIC equalized clusters, and water-filling power tanks.
    - **Run Full Master Benchmark Suite**: Runs the complete end-to-end simulation.
 
 ---
@@ -165,6 +166,30 @@ If you prefer to run scripts one-by-one from the Command Window or MATLAB Editor
 
 ---
 
+### Live Waveforms, Constellation Scopes & Water-Filling Tank Visualizer
+* **What it does**: Displays real-time physical baseband waveforms, spatial fading across antennas, transmitter/receiver I/Q scatter constellation diagrams, MMSE-SIC equalized clusters, and water-filling power tank levels.
+* **How to run on MATLAB Desktop**:
+  ```matlab
+  visualize_waveforms_and_constellations
+  ```
+  *(Or click the green **`⚡ Live Waveforms & Constellation Scopes`** button in `gui_dashboard`)*
+* **How to run on MATLAB Online**:
+  In the MATLAB Online Command Window:
+  ```matlab
+  visualize_waveforms_and_constellations
+  ```
+* **What the 6-Panel Visual Diagnostic Displays**:
+  1. **Panel 1 (Tx Waveform)**: In-Phase (I) and Quadrature (Q) time-domain discrete baseband signals exiting Transmit Antenna 1.
+  2. **Panel 2 (Rx Waveform)**: Correlated, faded, and noisy signal envelopes received across Rx Antenna 1 and Rx Antenna 2.
+  3. **Panel 3 (Tx Constellation)**: Clean 4-point QPSK constellation grid before transmission.
+  4. **Panel 4 (Rx Constellation)**: Un-equalized received scatter cloud distorted by Rayleigh multipath fading and inter-antenna interference.
+  5. **Panel 5 (Equalized Constellation)**: Cleanly resolved 4-cluster constellation recovered after MMSE-SIC detection.
+  6. **Panel 6 (Power Tanks)**: Water-Filling power allocation bar chart showing optimal power $P_i^{\ast}$ poured above the inverse SNR noise floor ($1/\gamma_i$).
+* **Output Generated**:
+  - `docs/figures/live_waveforms_and_constellations.png`
+
+---
+
 ## 6. Troubleshooting & FAQs
 
 ### Q: Why do I see no Communications Toolbox error?
@@ -178,3 +203,4 @@ If you prefer to run scripts one-by-one from the Command Window or MATLAB Editor
 ```matlab
 !git pull origin main
 ```
+
