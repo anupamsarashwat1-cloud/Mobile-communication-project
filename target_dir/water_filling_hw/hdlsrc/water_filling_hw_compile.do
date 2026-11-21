@@ -1,0 +1,9 @@
+vlib work
+vmap -c
+vlog  nfp_relop_single.v
+vlog  nfp_sub_single.v
+vlog  nfp_div_single.v
+vlog  nfp_gain_pow2_single.v
+vlog  nfp_add_single.v
+vlog  nfp_relop_single_block.v
+vlog  water_filling_hw.v

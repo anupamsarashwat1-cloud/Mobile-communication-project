@@ -1,0 +1,9 @@
+vlib work
+vmap -c
+vlog  nfp_div_single.v
+vlog  nfp_add_single.v
+vlog  nfp_relop_single.v
+vlog  nfp_mul_single.v
+vlog  nfp_sub_single.v
+vlog  nfp_uminus_single.v
+vlog  alamouti_combiner_hw.v

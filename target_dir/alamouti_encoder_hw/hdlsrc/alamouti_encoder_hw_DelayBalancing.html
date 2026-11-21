@@ -1,0 +1,123 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" itemscope itemtype="https://www.mathworks.com/help/schema/MathWorksDocPage">
+<head>
+<title>Delay Balancing Report for alamouti_encoder_hw</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+<script type="text/javascript" src="html_resources\js\jquery-1.7.1.js"></script>
+<script type="text/javascript" src="html_resources\js\docscripts.js"></script>
+        
+        <link href="html_resources\css\ice_960.css" rel="stylesheet" type="text/css">
+        <link href="html_resources\css\HDLsite5.css" rel="stylesheet" type="text/css">
+        <link href="html_resources\css\ice_doc_center.css" rel="stylesheet" type="text/css">
+        <link href="html_resources\css\ice_doc_center_installed.css" rel="stylesheet" type="text/css">
+        <link href="html_resources\css\ice_doc_center_print.css" rel="stylesheet" type="text/css" media="print">
+        <script type="text/javascript">
+            if (navigator.appName != "ICEbrowser") {
+            var cssStyleSheets = $("link").filter(function(){
+            var href = $(this).attr('href');
+            return href.indexOf("ice_doc_center_print.css") == -1});
+            var hrefElements = $.map(cssStyleSheets, function(elem) {
+            var href = $(elem).attr('href');
+            var hrefArray = href.split("/");
+            hrefArray[hrefArray.length - 1] = hrefArray[hrefArray.length - 1].replace("ice_", "");
+            return {
+            href: hrefArray.join("/"),
+            media: $(elem).attr('media')
+            };
+            });
+            cssStyleSheets.remove();
+            for (var i = 0; i < hrefElements.length; i++) {
+            if ($.browser.msie && $.browser.version <= 8) {
+            document.createStyleSheet(hrefElements[i].href);
+            } else {
+            var link = $('<link rel="stylesheet" href=' + hrefElements[i].href + ' type="text/css" />');
+            if (hrefElements[i].media) {
+            link.attr('media', hrefElements[i].media);
+            }
+            $('head').append(link);
+            }
+            }
+            }
+    </script>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head>
+<body>
+<div class="container_192">
+<div class="grid_192">
+ <div class="page_container"><div class="content_frame">
+ <BR/> <BR/><DIV ><H1>Delay Balancing Report for alamouti_encoder_hw</H1>
+<BR><H2>Generated on 2026-11-21 16:13:54</h2></DIV>
+<br><DIV class="content_container"><TABLE class="table" style="border-collapse: collapse; width: 100<TR style="background-color: #ffffff; margin: 5px;">
+<TD style="border: 1px solid #000000; text-align: center; padding: 8px; min-width: 50px;"><H4><b>Port</b></H4></TD>
+<TD style="border: 1px solid #000000; text-align: center; padding: 8px; min-width: 50px;"><H4><b>Pipeline Latency</b></H4></TD>
+<TD style="border: 1px solid #000000; text-align: center; padding: 8px; min-width: 50px;"><H4><b>Phase Delay</b></H4></TD>
+</TR>
+<TR style="background-color: #eeeeff; margin: 5px;">
+<TD style="border: 1px solid #000000; text-align: left; padding: 8px; min-width: 50px;"><H4>alamouti_encoder_hw/x1_t1_re</H4></TD>
+<TD style="border: 1px solid #000000; text-align: left; padding: 8px; min-width: 50px;"><H4>10</H4></TD>
+<TD style="border: 1px solid #000000; text-align: left; padding: 8px; min-width: 50px;"><H4>0</H4></TD>
+</TR>
+<TR style="background-color: #ffffff; margin: 5px;">
+<TD style="border: 1px solid #000000; text-align: left; padding: 8px; min-width: 50px;"><H4>alamouti_encoder_hw/x1_t1_im</H4></TD>
+<TD style="border: 1px solid #000000; text-align: left; padding: 8px; min-width: 50px;"><H4>10</H4></TD>
+<TD style="border: 1px solid #000000; text-align: left; padding: 8px; min-width: 50px;"><H4>0</H4></TD>
+</TR>
+<TR style="background-color: #eeeeff; margin: 5px;">
+<TD style="border: 1px solid #000000; text-align: left; padding: 8px; min-width: 50px;"><H4>alamouti_encoder_hw/x2_t1_re</H4></TD>
+<TD style="border: 1px solid #000000; text-align: left; padding: 8px; min-width: 50px;"><H4>10</H4></TD>
+<TD style="border: 1px solid #000000; text-align: left; padding: 8px; min-width: 50px;"><H4>0</H4></TD>
+</TR>
+<TR style="background-color: #ffffff; margin: 5px;">
+<TD style="border: 1px solid #000000; text-align: left; padding: 8px; min-width: 50px;"><H4>alamouti_encoder_hw/x2_t1_im</H4></TD>
+<TD style="border: 1px solid #000000; text-align: left; padding: 8px; min-width: 50px;"><H4>10</H4></TD>
+<TD style="border: 1px solid #000000; text-align: left; padding: 8px; min-width: 50px;"><H4>0</H4></TD>
+</TR>
+<TR style="background-color: #eeeeff; margin: 5px;">
+<TD style="border: 1px solid #000000; text-align: left; padding: 8px; min-width: 50px;"><H4>alamouti_encoder_hw/x1_t2_re</H4></TD>
+<TD style="border: 1px solid #000000; text-align: left; padding: 8px; min-width: 50px;"><H4>10</H4></TD>
+<TD style="border: 1px solid #000000; text-align: left; padding: 8px; min-width: 50px;"><H4>0</H4></TD>
+</TR>
+<TR style="background-color: #ffffff; margin: 5px;">
+<TD style="border: 1px solid #000000; text-align: left; padding: 8px; min-width: 50px;"><H4>alamouti_encoder_hw/x1_t2_im</H4></TD>
+<TD style="border: 1px solid #000000; text-align: left; padding: 8px; min-width: 50px;"><H4>10</H4></TD>
+<TD style="border: 1px solid #000000; text-align: left; padding: 8px; min-width: 50px;"><H4>0</H4></TD>
+</TR>
+<TR style="background-color: #eeeeff; margin: 5px;">
+<TD style="border: 1px solid #000000; text-align: left; padding: 8px; min-width: 50px;"><H4>alamouti_encoder_hw/x2_t2_re</H4></TD>
+<TD style="border: 1px solid #000000; text-align: left; padding: 8px; min-width: 50px;"><H4>10</H4></TD>
+<TD style="border: 1px solid #000000; text-align: left; padding: 8px; min-width: 50px;"><H4>0</H4></TD>
+</TR>
+<TR style="background-color: #ffffff; margin: 5px;">
+<TD style="border: 1px solid #000000; text-align: left; padding: 8px; min-width: 50px;"><H4>alamouti_encoder_hw/x2_t2_im</H4></TD>
+<TD style="border: 1px solid #000000; text-align: left; padding: 8px; min-width: 50px;"><H4>10</H4></TD>
+<TD style="border: 1px solid #000000; text-align: left; padding: 8px; min-width: 50px;"><H4>0</H4></TD>
+</TR>
+</TABLE></DIV><br /><br />
+<br><br><h2>Delay Absorption Summary</h2>
+<br><br><H4>Design delays are fully utilized to absorb latency introduced by optimizations and design implementations.</H4>
+<br><br><br><BR><BR> </div></div></div></div>
+                    <div class="grid_192">
+                        <div class="footer_container">
+                            <div class="footer">
+                                <ul class="footernav">
+                                    <li class="footernav_trademarks"><a href="html_resources/docs/acknowledgments.html">Acknowledgments</a></li>
+                                    <li class="footernav_trademarks"><a href="html_resources/docs/trademarks.txt">Trademarks</a></li>
+                                    <li class="footernav_patents"><a href="html_resources/docs/patents.txt">Patents</a></li>
+                                    <li class="footernav_help"><a href="html_resources/docs/license.txt">Terms of Use</a></li>
+                                </ul>
+                                <div class="copyright">&copy; 1994-2026 The MathWorks, Inc.</div>
+                            </div>
+                        </div>
+                    </div>
+
+        <script type="text/javascript">
+
+$(document).ready( setTimeout( function () {
+                   $(".expandAllLink").trigger('click');
+            }, 50 ) );
+
+        </script>
+        
+</body>
+</html>
