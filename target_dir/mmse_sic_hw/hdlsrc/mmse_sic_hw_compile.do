@@ -1,0 +1,14 @@
+vlib work
+vmap -c
+vlog  nfp_div_single.v
+vlog  nfp_add_single.v
+vlog  nfp_sub_single.v
+vlog  nfp_relop_single.v
+vlog  nfp_mul_single.v
+vlog  nfp_uminus_single.v
+vlog  nfp_recip_single.v
+vlog  nfp_gain_pow2_single.v
+vlog  nfp_relop_single_block.v
+vlog  nfp_relop_single_block1.v
+vlog  nfp_relop_single_block2.v
+vlog  mmse_sic_hw.v
