@@ -1,5 +1,5 @@
 # Tri-Framework Master Implementation Plan: MATLAB to ASIC Conversion
-## Mobile Communication MIMO Baseband Processor (SMVDU Capstone & TITAN-X Accelerator)
+## Standalone 2x2 MIMO Baseband Processor ASIC (SMVDU-MIMO-180)
 
 ---
 
@@ -87,7 +87,7 @@ This implementation plan orchestrates three autonomous engineering frameworks:
   1. Automated testbench execution (`mimo_baseband_top_tb.v`).
   2. Cosimulation via MATLAB HDL Verifier with 10,000 Monte Carlo channel realizations.
   3. Static Timing Analysis (STA) at target clock (100 MHz on SCL 180nm, 250 MHz on TSMC 28nm).
-  4. Integration into the SMVDU-TITAN-X RISC-V SoC crossbar.
+  4. Standalone chip I/O pad ring integration and package bonding diagram (QFN-48 / CQFP-64).
 
 ---
 

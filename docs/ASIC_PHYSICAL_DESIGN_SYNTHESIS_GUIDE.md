@@ -1,6 +1,6 @@
 # ASIC Physical Design and Synthesis Guide: 2x2 MIMO Baseband Processor
 ## Target Technology: SCL 180nm CMOS (1P6M) with Cadence gpdk180 Pre-Silicon Flow
-### Project: SMVDU TITAN-X Mobile Communication Accelerator
+### Project: Standalone 2x2 MIMO Baseband Processor ASIC (SMVDU-MIMO-180)
 
 ---
 

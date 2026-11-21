@@ -1,79 +1,77 @@
 # SCL 180nm / Cadence 180nm Chip Floorplan & Placement Specification
-## SMVDU-TITAN-X Heterogeneous SoC with Integrated MIMO Baseband Accelerator
+## Standalone 2x2 MIMO Baseband Processor ASIC (SMVDU-MIMO-180)
 
 ---
 
 ## 1. Physical Specifications & Metal Stack
 
+* **Project Identification:** Dedicated Standalone 2x2 MIMO Baseband Processor IC (`SMVDU-MIMO-180`)
 * **Target Fabrication Node:** SCL 180nm CMOS Logic Process (Standard SCL 180nm foundry run)
-* **Pre-Silicon Verification & Synthesis PDK:** Cadence generic 180nm PDK (`gpdk180` / OSU 180nm standard cell library)
-* **Die Size:** $5.0\text{ mm} \times 5.0\text{ mm}$ ($25.0\text{ mm}^2$ total silicon area)
-* **Core Cavity Area:** $4.2\text{ mm} \times 4.2\text{ mm}$ ($17.64\text{ mm}^2$)
-* **Core Target Utilization:** $65\%$ (guarantees timing closure without wire congestion)
+* **Pre-Silicon Virtual Prototyping PDK:** Cadence generic 180nm PDK (`gpdk180` / OSU 180nm standard cell library)
+* **Die Size:** $2.0\text{ mm} \times 2.0\text{ mm}$ ($4.0\text{ mm}^2$ total silicon area)
+* **Core Cavity Area:** $1.5\text{ mm} \times 1.5\text{ mm}$ ($2.25\text{ mm}^2$)
+* **Core Target Utilization:** $65\%$ (guarantees timing closure, low IR drop, and zero congestion)
 * **Operating Voltage:**
   * Core Logic: $1.8\text{ V} \pm 10\%$
-  * I/O Ring: $3.3\text{ V} \pm 10\%$
+  * I/O Pad Frame: $3.3\text{ V} \pm 10\%$
 * **Metal Interconnect Stack (1P6M - 1 Polysilicon, 6 Metal Layers):**
   * `Metal 1` (M1): Standard cell internal routing and intra-cell connections.
   * `Metal 2 & 3` (M2, M3): Horizontal and vertical signal routing.
-  * `Metal 4` (M4): High-speed bus routing (AXI4 Crossbar matrix).
+  * `Metal 4` (M4): Inter-quadrant datapath buses.
   * `Metal 5 & 6` (M5, M6): Top-level Power Distribution Network (PDN) rings, VDD/VSS mesh stripes, and global clock tree distribution.
 
 ---
 
-## 2. Chip Floorplan & Quadrant Placement Map
+## 2. Standalone Chip Floorplan & Subsystem Placement
+
+The entire silicon die is dedicated exclusively to the 2x2 MIMO baseband processing engine:
 
 ```
 +-----------------------------------------------------------------------------------+
-|                            NORTH I/O PAD RING (3.3V)                              |
-|   [GPIO] [JTAG_TCK] [JTAG_TMS] [JTAG_TDI] [JTAG_TDO] [RESET_N] [CLK_IN 100MHz]    |
+|                            NORTH I/O PAD RING (3.3V / 1.8V)                       |
+|   [VDD_IO] [RESET_N] [CLK_IN 100MHz] [HOST_CS_N] [HOST_SCLK] [HOST_MOSI] [HOST_MISO]    |
 +---+---------------------------------------------------------------------------+---+
-|   |  QUADRANT 1: COMPUTE COMPLEX             |  QUADRANT 2: MEMORY HIERARCHY  |   |
-|   |  - Core 0: RV64GC (32KB L1 I/D)          |  - 512KB Unified 4-Way L2      |   |
-|   |  - Core 1: RV64GC (32KB L1 I/D)          |    SRAM Cache (Banked Macros)  |   |
-|   |  - Core 2: RV64GC (32KB L1 I/D)          |  - Boot ROM & OTP Security     |   |
-| W |  - Core 3: RV64GC (32KB L1 I/D)          |  - Memory BIST Controllers     | E |
-| E |  - Core 4: RV64IMAC (Monitor Hart)       |                                | A |
+|   |  QUADRANT 1: DIGITAL FRONT-END (DFE)     |  QUADRANT 2: TRANSMIT SUBSYSTEM|   |
+|   |  - AXI4-Stream I/Q Input FIFO Buffers    |  - Alamouti STBC 2x2 Encoder   |   |
+|   |  - I/Q Imbalance & DC Offset Correction  |  - SVD Eigenmode Precoder (V)  |   |
+| W |  - Baseband Framing & Packet Sync Engine |  - Water-Filling Power Shaper  | E |
+| E |  - Sample Rate Decimation / Interpolation|  - TX Antenna Mapping Multiplexer| A |
 | S |------------------------------------------+--------------------------------| S |
-| T |             CENTER: 15-MASTER x 9-SLAVE AXI4 CROSSBAR MATRIX              | T |
-|   |         + PLIC Interrupt Controller & Power Management Unit (PMU)         |   |
+| T |             CENTRAL ARBITRATION & CONFIGURATION BUS MATRIX                | T |
+|   |         + Mode Control Registers, Status BIST & Power Gating Logic        |   |
 | P |------------------------------------------+--------------------------------| P |
-| A |  QUADRANT 3: SYSTEM PERIPHERALS          |  QUADRANT 4: 2x2 MIMO BASEBAND | A |
-| D |  - UART0 / UART1, SPI0 / SPI1            |              ACCELERATOR       | D |
-|   |  - I2C, Timers, Watchdog                 |  - SVD CORDIC Systolic Array   |   |
-| R |  - DMA Engine & High-Speed Link          |  - MMSE-SIC Detection Engine   | R |
-| I |  - Crypto Enclave (AES/SHA/ECC)          |  - Alamouti STBC Core          | I |
-| N |                                          |  - Water-Filling & Mode FSM    | N |
-| G |                                          |  - AXI4-Stream Baseband DMA    | G |
+| A |  QUADRANT 3: CHANNEL ESTIMATION & FSM    |  QUADRANT 4: ADVANCED RECEIVER | A |
+| D |  - 2x2 Channel Matrix H Registers        |  - Alamouti MRC Combining Unit | D |
+|   |  - 16-Stage CORDIC SVD Decomposition     |  - Linear MMSE Equalizer Core  |   |
+| R |  - Singular Value Pipeline (s1, s2)      |  - Ordered MMSE-SIC Detector   | R |
+| I |  - Condition Number (kappa) Comparator   |  - QAM Slicers & Demodulators  | I |
+| N |  - Adaptive Rank-Switching FSM Core      |  - Output Stream FIFO & CRC    | N |
+| G |                                          |                                | G |
 +---+---------------------------------------------------------------------------+---+
-|                            SOUTH I/O PAD RING (3.3V / 1.8V)                       |
-|   [I_RX0] [Q_RX0] [I_RX1] [Q_RX1] [I_TX0] [Q_TX0] [I_TX1] [Q_TX1] [CORE_VDD]     |
+|                            SOUTH I/O PAD RING (Baseband I/Q Ports)                |
+|   [RX0_I] [RX0_Q] [RX1_I] [RX1_Q] [TX0_I] [TX0_Q] [TX1_I] [TX1_Q] [CORE_VDD]     |
 +-----------------------------------------------------------------------------------+
 ```
 
 ---
 
-## 3. Quadrant 4: MIMO Baseband Accelerator Floorplan
+## 3. Subsystem Placement Rationale
 
-Within Quadrant 4, sub-modules are placed to minimize latency and critical path lengths:
-
-1. **North Edge of Quadrant 4:**
-   * `mimo_axi4_lite_slave.v`: Placed directly bordering the central AXI4 crossbar to receive memory-mapped control words (SNR, condition number thresholds, mode overrides).
-2. **West Edge of Quadrant 4:**
-   * `mimo_axis_stream_adapter.v`: Interfaced to the system DMA controller to ingest incoming I/Q samples and stream detected symbols.
-3. **Core Datapath Cluster (Center & East):**
-   * `svd_cordic_engine.v` (16 pipeline stages) placed directly adjacent to `water_filling_allocator.v` to ensure single-cycle singular value transfer ($\sigma_1, \sigma_2$).
-   * `mmse_sic_core.v` placed adjacent to the QAM constellation slicer macros to eliminate wire delays during cancellation feedback.
-   * `alamouti_combiner.v` placed near the stream output multiplexer.
+1. **North Periphery (Host Configuration):**
+   * Host interface (AXI4-Lite or SPI slave) placed near the North pads to receive run-time parameters (switching thresholds $\kappa_{\text{thresh}} = 4.5$, $\text{SNR}_{\text{thresh}} = 8.0\text{ dB}$, mode override).
+2. **South Periphery (RF I/Q Interface):**
+   * Placed along the South pad ring directly adjacent to high-speed differential/parallel I/Q pads connecting to an external RF transceiver (e.g. AD9361 / discrete ADC/DAC).
+3. **Quadrant 3 & 4 Proximity (Channel Engine to Detectors):**
+   * The 16-stage CORDIC SVD engine and channel matrix registers are positioned adjacent to the MMSE-SIC and Alamouti MRC detectors in Quadrant 4 to minimize interconnect delay on the critical path.
 
 ---
 
 ## 4. Power Distribution Network (PDN) Strategy
 
 * **Power Rings:**
-  * Outer Ring: $3.3\text{ V}$ `VDDO` / `VSSO` (Pad ring supply, width = $25\,\mu\text{m}$).
-  * Inner Ring: $1.8\text{ V}$ `VDD` / `VSS` (Core supply, width = $20\,\mu\text{m}$).
+  * Outer Ring: $3.3\text{ V}$ `VDDO` / `VSSO` (Pad ring supply, width = $20\,\mu\text{m}$).
+  * Inner Ring: $1.8\text{ V}$ `VDD` / `VSS` (Core supply, width = $15\,\mu\text{m}$).
 * **Power Mesh Stripes:**
-  * `Metal 6` (Vertical): $1.8\text{ V}$ VDD/VSS stripes, pitch = $50\,\mu\text{m}$, width = $4\,\mu\text{m}$.
-  * `Metal 5` (Horizontal): $1.8\text{ V}$ VDD/VSS stripes, pitch = $50\,\mu\text{m}$, width = $4\,\mu\text{m}$.
-  * IR Drop Target: $< 5\%$ ($< 90\text{ mV}$ drop across highest switching activity).
+  * `Metal 6` (Vertical): $1.8\text{ V}$ VDD/VSS stripes, pitch = $40\,\mu\text{m}$, width = $3.5\,\mu\text{m}$.
+  * `Metal 5` (Horizontal): $1.8\text{ V}$ VDD/VSS stripes, pitch = $40\,\mu\text{m}$, width = $3.5\,\mu\text{m}$.
+  * Dynamic IR Drop Target: $< 5\%$ ($< 90\text{ mV}$) across all simultaneous switching vectors.
