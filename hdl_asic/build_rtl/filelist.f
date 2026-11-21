@@ -25,5 +25,10 @@ hdl_asic/build_rtl/water_filling_hw.v
 hdl_asic/build_rtl/qam_slicer_hw.v
 hdl_asic/build_rtl/mmse_sic_hw.v
 
-# Top-Level ASIC Integration Wrapper
+# Subsystem 01: Host Bus Interfaces & Interconnect
+hdl_asic/01_interfaces_and_bus/mimo_axi4_lite_slave.v
+hdl_asic/01_interfaces_and_bus/mimo_axis_stream_adapter.v
+hdl_asic/01_interfaces_and_bus/mimo_interconnect_crossbar.v
+
+# Subsystem 06: Top-Level ASIC Integration Wrapper
 hdl_asic/06_top_integration/mimo_baseband_top.v
