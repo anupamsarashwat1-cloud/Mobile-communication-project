@@ -2,7 +2,8 @@
 REM =============================================================================
 REM Script: run_hdl_coder.bat
 REM Project: Standalone 2x2 MIMO Baseband Processor ASIC (SMVDU-MIMO-180)
-REM Description: One-click launcher for MATLAB HDL Coder automated Verilog generation.
+REM Description: Launches MATLAB with interactive desktop interface to ensure
+REM              online license validation and real-time HDL Coder synthesis logging.
 REM =============================================================================
 
 echo ======================================================================
@@ -19,9 +20,9 @@ if not exist %MATLAB_EXE% (
     exit /b 1
 )
 
-echo Starting MATLAB in batch mode...
-%MATLAB_EXE% -batch "generate_hdl_coder_all"
+echo Starting MATLAB GUI with automated synthesis script...
+start "" %MATLAB_EXE% -r "generate_hdl_coder_all"
 
 echo.
-echo HDL Generation process completed. Inspect outputs in hdl_asic/build_rtl/
-pause
+echo MATLAB is launching on your desktop. 
+echo It will authenticate your license and run generate_hdl_coder_all automatically.
