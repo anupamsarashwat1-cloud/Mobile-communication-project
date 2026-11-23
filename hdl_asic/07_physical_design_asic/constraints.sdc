@@ -16,8 +16,13 @@ set_clock_uncertainty -hold  0.150 [get_clocks clk_core]
 set_clock_transition 0.200 [get_clocks clk_core]
 
 # 2. Reset and Control False Paths
-# Asynchronous active-low reset assertion is false path; removal is synchronized internally
-set_false_path -from [get_ports rst_n]
+# Reset assertion is false path; removal is synchronized internally
+if {[sizeof_collection [get_ports -quiet rst]] > 0} {
+    set_false_path -from [get_ports rst]
+}
+if {[sizeof_collection [get_ports -quiet rst_n]] > 0} {
+    set_false_path -from [get_ports rst_n]
+}
 
 # 3. Input Delays (AXI4-Lite & AXI4-Stream)
 # Assuming 30% external budget (3.0 ns)
