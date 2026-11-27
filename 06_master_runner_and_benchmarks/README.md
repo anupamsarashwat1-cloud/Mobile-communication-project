@@ -44,6 +44,9 @@ d^{\ast}(r) = (N_t - r)(N_r - r)
 ### 3.2 Zheng-Tse Diversity-Multiplexing Trade-off (DMT) Bound
 ![Diversity-Multiplexing Trade-off (DMT) Bound](figures/dmt_diversity_multiplexing_curve.png)
 
+### 3.3 MIMO Antenna Scaling Comparison (`1x1` vs `2x2` vs `4x4` vs `8x8`)
+![MIMO Antenna Scaling Comparison](figures/mimo_scaling_comparison.png)
+
 ---
 
 ## 4. Files in this Folder
@@ -52,7 +55,8 @@ d^{\ast}(r) = (N_t - r)(N_r - r)
 |---|---|
 | [`main_benchmark_suite.m`](main_benchmark_suite.m) | Master runner script executing all stages and exporting the 4-panel consolidated summary figure. |
 | [`dmt_tradeoff_analyzer.m`](dmt_tradeoff_analyzer.m) | Computes and plots the theoretical Zheng-Tse DMT bound for 2x2 and 4x4 MIMO systems. |
-| [`figures/`](figures/) | Contains the consolidated executive summary figure and DMT trade-off plots. |
+| [`mimo_scaling_comparison.m`](mimo_scaling_comparison.m) | Compares `1x1`, `2x2`, `4x4`, and `8x8` fixed MIMO dimensions across Capacity, BER, Goodput, and DMT. |
+| [`figures/`](figures/) | Contains the consolidated executive summary figure, MIMO scaling chart, and DMT trade-off plots. |
 
 ---
 

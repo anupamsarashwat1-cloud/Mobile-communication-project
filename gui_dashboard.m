@@ -218,7 +218,7 @@ function run_stage4_gui(ax, lbl_status)
             W = (H'*H + 2*noise_var*eye(2)) \ H';
             S_hat = sqrt(2)*(W*Y);
             rx_b_sm = zeros(2, 512);
-            for tx=1:2, rx_b_sm(tx, :) = demodulate_qam(S_hat(tx, :)', 4).'; end
+            for tx=1:2, rx_b_sm(tx, :) = demodulate_qam(S_hat(tx, :).', 4).'; end
             if sum(sum(b_sm ~= rx_b_sm)) == 0, sm_ok = sm_ok + 1; end
             
             % Adaptive

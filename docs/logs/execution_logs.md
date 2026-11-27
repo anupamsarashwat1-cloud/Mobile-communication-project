@@ -103,12 +103,27 @@ STAGE_5_PASSED (Exit Code: 0)
 ================================================================================
 Scheme          | BER @ 10dB   | BER @ 20dB   | Goodput@10dB | Cap @ 20dB  
 --------------------------------------------------------------------------------
-Alamouti STBC   | 9.50e-04     | 0.00e+00     | 1.70 bps/Hz  | 5.90 bps/Hz 
-SM (ZF)         | 5.00e-01     | 5.00e-01     | 0.00 bps/Hz  | 10.91 bps/Hz
-SM (MMSE)       | 5.00e-01     | 5.00e-01     | 0.00 bps/Hz  | 10.91 bps/Hz
-SM (MMSE-SIC)   | 5.01e-01     | 5.00e-01     | 0.00 bps/Hz  | 10.91 bps/Hz
-Adaptive MIMO   | Adaptive     | Adaptive     | 0.45 bps/Hz  | 10.95 bps/Hz
+Alamouti STBC   | 1.72e-03     | 0.00e+00     | 1.68         | 5.83        
+SM (ZF)         | 9.17e-02     | 1.25e-02     | 0.37         | 11.01       
+SM (MMSE)       | 6.35e-02     | 8.02e-03     | 0.37         | 11.01       
+SM (MMSE-SIC)   | 4.83e-02     | 4.34e-03     | 0.37         | 11.01       
+Adaptive MIMO   | Adaptive     | Adaptive     | 1.68         | 11.04       
 ================================================================================
 All tests executed successfully. Figures saved to 06_master_runner_and_benchmarks/figures/
 STAGE_6_PASSED (Exit Code: 0)
+```
+
+### MIMO Antenna Scaling Comparison (`1x1` vs `2x2` vs `4x4` vs `8x8`)
+```
+========================================================================================
+                      MIMO ANTENNA SCALING BENCHMARK SUMMARY (rho = 0.3)
+========================================================================================
+MIMO Config  | Median kappa  | BER @ 12dB   | BER @ 20dB   | Goodput @ 24dB | Cap @ 20dB  
+----------------------------------------------------------------------------------------
+1x1 (SISO)   | 1.00          | 2.64e-02     | 2.36e-03     | 1.92           | 5.92        
+2x2 MIMO     | 3.22          | 4.24e-02     | 9.68e-03     | 3.56           | 11.10       
+4x4 MIMO     | 8.61          | 4.61e-02     | 1.08e-02     | 5.84           | 21.66       
+8x8 MIMO     | 20.64         | 4.67e-02     | 7.67e-03     | 7.20           | 42.96       
+========================================================================================
+Plot saved to: 06_master_runner_and_benchmarks/figures/mimo_scaling_comparison.png
 ```

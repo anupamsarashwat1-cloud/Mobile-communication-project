@@ -85,7 +85,7 @@ for s_idx = 1:length(snr_db_vec)
         
         rx_bits_sm = zeros(2, frame_syms * k);
         for tx = 1:2
-            rx_bits_sm(tx, :) = demodulate_qam(S_hat_sm(tx, :)', mod_order).';
+            rx_bits_sm(tx, :) = demodulate_qam(S_hat_sm(tx, :).', mod_order).';
         end
         
         is_sm_success = (sum(sum(tx_bits_sm ~= rx_bits_sm)) == 0);
@@ -127,7 +127,7 @@ saveas(gcf, fullfile(fig_dir, 'effective_goodput_envelope.png'));
 kappa_range = linspace(1, 10, 100);
 snr_range = linspace(-4, 24, 100);
 [KAPPA, SNR_GRID] = meshgrid(kappa_range, snr_range);
-DECISION_MAP = double((SNR_GRID >= 8.0) & (KAPPA <= 4.5));
+DECISION_MAP = double((SNR_GRID >= 15.0) & (KAPPA <= 4.5));
 
 figure('Name', 'Mode Decision Regions', 'Position', [150, 150, 750, 480]);
 contourf(KAPPA, SNR_GRID, DECISION_MAP, [0 0.5 1], 'LineColor', 'k');
@@ -135,8 +135,8 @@ colormap([0.3 0.6 0.9; 0.9 0.4 0.3]);
 xlabel('Channel Condition Number \kappa(H) = \sigma_{max}/\sigma_{min}');
 ylabel('Instantaneous SNR (dB)');
 title('Adaptive MIMO Switching Decision Regions in Fixed 2x2 Configuration');
-text(6.0, 16, 'Diversity Mode (STBC)', 'FontSize', 12, 'FontWeight', 'bold', 'Color', 'w');
-text(2.0, 16, 'Spatial Multiplexing Mode', 'FontSize', 12, 'FontWeight', 'bold', 'Color', 'w');
+text(6.0, 18, 'Diversity Mode (STBC)', 'FontSize', 12, 'FontWeight', 'bold', 'Color', 'w');
+text(1.5, 19, 'Spatial Multiplexing Mode', 'FontSize', 12, 'FontWeight', 'bold', 'Color', 'w');
 saveas(gcf, fullfile(fig_dir, 'mode_switching_decision_boundary.png'));
 
 fprintf('[Stage 4 Complete] Plots saved to 04_adaptive_mode_switching/figures/\n');
