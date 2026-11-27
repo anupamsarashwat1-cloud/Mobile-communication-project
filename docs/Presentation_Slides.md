@@ -49,14 +49,18 @@
 \mathbf{H} = \mathbf{U}\mathbf{\Sigma}\mathbf{V}^H \implies \tilde{\mathbf{y}} = \mathbf{\Sigma} \mathbf{P}^{1/2} \mathbf{s} + \tilde{\mathbf{n}}
 ```
 
-* **Channel Condition Number:** κ(H) = σ_1 / σ_2.
+* **Channel Condition Number:** $\kappa(\mathbf{H}) = \sigma_1 / \sigma_2$.
+
+![Singular Value PDF](../01_channel_modeling/figures/singular_value_pdf.png)
+![Condition Number vs Correlation](../01_channel_modeling/figures/condition_number_vs_correlation.png)
+
 * **Speaker Note:**  
   *"We model realistic spatial correlation where antennas are closely spaced. Applying SVD transforms the coupled MIMO matrix into orthogonal, uncoupled parallel SISO sub-channels."*
 
 ---
 
 ### Slide 4: Multiplexing Optimization via Water-Filling
-* **Formulation:** Maximize sum spectral efficiency subject to sum power constraint P_total.
+* **Formulation:** Maximize sum spectral efficiency subject to sum power constraint $P_{total}$.
 * **Optimal Water-Filling Solution:**
 
 ```math
@@ -64,34 +68,46 @@ P_i^{\ast} = \max\left(0, \; \mu - \frac{\sigma_n^2}{\sigma_i^2}\right)
 ```
 
 * **Behavior:**
-  * *Low SNR / High Correlation:* Allocates 100% power to dominant mode σ_1 (optimal eigenbeamforming).
+  * *Low SNR / High Correlation:* Allocates 100% power to dominant mode $\sigma_1$ (optimal eigenbeamforming), yielding up to **48.5% capacity gain** at SNR = -4 dB, $\rho = 0.9$.
   * *High SNR:* Allocates power evenly across all active modes to maximize multiplexing gain.
+
+![Capacity Water-Filling vs Equal Power](../03_optimization_svd_waterfilling/figures/capacity_wf_vs_equal_power.png)
+![Capacity Gain vs Correlation](../03_optimization_svd_waterfilling/figures/capacity_gain_vs_correlation.png)
+
 * **Speaker Note:**  
   *"Water-Filling mathematically prevents energy wastage on weak or ill-conditioned spatial modes, delivering substantial capacity gains over standard equal-power systems."*
 
 ---
 
 ### Slide 5: Dynamic Adaptive Mode Switching (Goodput Optimization)
-* **Real-time Controller:** Monitors instantaneous SNR (γ) and Condition Number (κ(H)).
+* **Real-time Controller:** Monitors instantaneous SNR ($\gamma$) and Condition Number ($\kappa(\mathbf{H})$).
 * **Switching Logic:**
 
 ```math
-\text{Mode} = \begin{cases} \text{Rank-2 (Spatial Multiplexing)}, & \text{if } \gamma \ge 8.0\text{ dB} \text{ and } \kappa(\mathbf{H}) \le 4.5 \\ \text{Rank-1 (Alamouti Diversity STBC)}, & \text{otherwise} \end{cases}
+\text{Mode} = \begin{cases} \text{Rank-2 (Spatial Multiplexing)}, & \text{if } \gamma \ge 15.0\text{ dB} \text{ and } \kappa(\mathbf{H}) \le 4.5 \\ \text{Rank-1 (Alamouti Diversity STBC)}, & \text{otherwise} \end{cases}
 ```
 
-* **Impact:** Traces the upper convex envelope of Effective Goodput with zero low-SNR outage.
+* **Impact:** Traces the upper convex envelope of Effective Goodput with zero low-SNR outage (`1.68 bps/Hz` at 10 dB, climbing to `~3.5 bps/Hz` at 24 dB).
+
+![Effective Goodput Envelope](../04_adaptive_mode_switching/figures/effective_goodput_envelope.png)
+![Mode Switching Decision Boundary](../04_adaptive_mode_switching/figures/mode_switching_decision_boundary.png)
+
 * **Speaker Note:**  
   *"This autonomous controller mirrors the Rank Indicator (RI) and Channel Quality Indicator (CQI) mechanisms in 5G NR, ensuring the link is always operating at peak efficiency."*
 
 ---
 
-### Slide 6: Advanced Receivers — Ordered MMSE-SIC (V-BLAST)
+### Slide 6: Advanced Receivers — Ordered MMSE-SIC (V-BLAST) & Live Scopes
 * **Limitation of Linear Receivers:** Zero-Forcing suffers severe noise amplification.
 * **Non-Linear Ordered MMSE-SIC:**
   1. Detect stream with highest post-equalization SINR.
-  2. Demodulate and subtract its reconstructed contribution from received vector y.
+  2. Demodulate and subtract its reconstructed contribution from received vector $\mathbf{y}$.
   3. Detect the remaining stream with maximal ratio combining.
-* **Gain:** Delivers a **2.5 dB SNR advantage** over linear MMSE at BER = 1e-3.
+* **Gain:** Delivers a **2.5 dB SNR advantage** over linear MMSE at BER = $10^{-3}$ (`4.34e-03` vs `8.02e-03` at 20 dB).
+
+![MMSE-SIC vs Linear Receivers](../05_simulink_and_advanced_receivers/figures/sic_vs_linear_receivers_ber.png)
+![Live Waveforms and Constellations](figures/live_waveforms_and_constellations.png)
+
 * **Speaker Note:**  
   *"By stripping out detected interference successively, MMSE-SIC recovers second-order diversity on the secondary spatial stream."*
 
@@ -99,33 +115,53 @@ P_i^{\ast} = \max\left(0, \; \mu - \frac{\sigma_n^2}{\sigma_i^2}\right)
 
 ### Slide 7: Master Benchmark Results & Quantitative Metrics
 
-| Scheme | Diversity Order (d) | Multiplexing Gain (r) | BER @ 10 dB | BER @ 20 dB | Effective Goodput @ 10 dB | Ergodic Cap @ 20 dB (ρ=0.3) |
+| Scheme | Diversity Order (d) | Multiplexing Gain (r) | BER @ 10 dB | BER @ 20 dB | Effective Goodput @ 10 dB | Ergodic Cap @ 20 dB ($\rho=0.3$) |
 |---|:---:|:---:|:---:|:---:|:---:|:---:|
-| **Alamouti STBC** | 4 | 1 | 1.72e-03 | 0.00e+00 | 1.68 bps/Hz | 5.83 bps/Hz |
-| **Linear ZF** | 1 | 2 | 9.17e-02 | 1.25e-02 | 0.37 bps/Hz | 11.01 bps/Hz |
-| **Linear MMSE** | 1 | 2 | 6.35e-02 | 8.02e-03 | 0.37 bps/Hz | 11.01 bps/Hz |
-| **MMSE-SIC** | 2 | 2 | 4.83e-02 | 4.34e-03 | 0.37 bps/Hz | 11.01 bps/Hz |
-| **Adaptive SVD-WF** | Adaptive | Adaptive | Adaptive | Adaptive | **1.68 bps/Hz** | **11.04 bps/Hz** |
+| **Alamouti STBC** | 4 | 1 | `1.72e-03` | `0.00e+00` | `1.68 bps/Hz` | `5.83 bps/Hz` |
+| **Linear ZF** | 1 | 2 | `9.17e-02` | `1.25e-02` | `0.37 bps/Hz` | `11.01 bps/Hz` |
+| **Linear MMSE** | 1 | 2 | `6.35e-02` | `8.02e-03` | `0.37 bps/Hz` | `11.01 bps/Hz` |
+| **MMSE-SIC** | 2 | 2 | `4.83e-02` | `4.34e-03` | `0.37 bps/Hz` | `11.01 bps/Hz` |
+| **Adaptive SVD-WF** | Adaptive | Adaptive | Adaptive | Adaptive | **`1.68 bps/Hz`** | **`11.04 bps/Hz`** |
 
-* **MIMO Scaling (`1x1` → `2x2` → `4x4` → `8x8`):** Ergodic capacity scales linearly (`5.92` → `11.10` → `21.66` → `42.96 bps/Hz` at 20 dB), while median $\kappa(\mathbf{H})$ grows from `1.00` to `20.64`, proving why Water-Filling and Adaptive Rank Switching become even more critical in larger arrays.
+![Master Comprehensive Summary](../06_master_runner_and_benchmarks/figures/master_comprehensive_summary.png)
 
 * **Speaker Note:**  
-  *"Here are the numerical results from our simulation suite. Notice how Adaptive MIMO achieves the high reliability of Alamouti at 10 dB while achieving maximum 11.07 bps/Hz capacity at high SNR."*
+  *"Here are the numerical results from our MATLAB R2026b simulation suite. Notice how Adaptive MIMO achieves the high reliability of Alamouti at 10 dB (`1.68 bps/Hz`) while achieving maximum `11.04 bps/Hz` capacity at high SNR."*
 
 ---
 
-### Slide 8: Zheng-Tse Diversity-Multiplexing Trade-off (DMT)
-* **Fundamental Bound:** d*(r) = (Nt - r)(Nr - r) = (2-r)^2 for 2x2 MIMO.
+### Slide 8: Impact of Scaling Fixed MIMO Dimensions (`1x1` to `8x8`)
+* **Question Addressed:** What happens when we scale the fixed antenna array beyond `2x2` (`1x1` → `2x2` → `4x4` → `8x8`) under $\rho = 0.3$?
+
+| MIMO Config | Median $\kappa(\mathbf{H})$ | MMSE BER @ 12 dB | MMSE BER @ 20 dB | Goodput @ 24 dB | SVD-WF Cap @ 20 dB |
+|---|:---:|:---:|:---:|:---:|:---:|
+| **1x1 (SISO)** | `1.00` | `2.64e-02` | `2.36e-03` | `1.92 bps/Hz` | `5.92 bps/Hz` |
+| **2x2 MIMO** | `3.22` | `4.24e-02` | `9.68e-03` | `3.56 bps/Hz` | `11.10 bps/Hz` |
+| **4x4 MIMO** | `8.61` | `4.61e-02` | `1.08e-02` | `5.84 bps/Hz` | `21.66 bps/Hz` |
+| **8x8 MIMO** | `20.64` | `4.67e-02` | `7.67e-03` | **`7.20 bps/Hz`** | **`42.96 bps/Hz`** |
+
+![MIMO Antenna Scaling Comparison](../06_master_runner_and_benchmarks/figures/mimo_scaling_comparison.png)
+
+* **Speaker Note:**  
+  *"Scaling from 2x2 to 8x8 multiplies ergodic capacity linearly up to 42.96 bps/Hz at 20 dB, but also drives median channel condition number κ(H) from 3.22 to 20.64 — proving why Water-Filling and Adaptive Rank Switching are indispensable."*
+
+---
+
+### Slide 9: Zheng-Tse Diversity-Multiplexing Trade-off (DMT)
+* **Fundamental Bound:** $d^{\ast}(r) = (N_t - r)(N_r - r) = (2-r)^2$ for 2x2 MIMO.
 * **Extreme Points:**
-  * Alamouti STBC: (r = 0, d = 4) — Maximum Diversity
-  * Spatial Multiplexing: (r = 2, d = 0) — Maximum Rate
+  * Alamouti STBC: $(r = 0, d = 4)$ — Maximum Diversity
+  * Spatial Multiplexing: $(r = 2, d = 0)$ — Maximum Rate
 * **Optimized Operating Trajectory:** Adaptive SVD-WF dynamically traverses along this optimal trade-off curve based on channel conditions.
+
+![Zheng-Tse DMT Curve](../06_master_runner_and_benchmarks/figures/dmt_diversity_multiplexing_curve.png)
+
 * **Speaker Note:**  
   *"The Zheng-Tse DMT curve confirms that our system achieves optimal operating points on the theoretical Pareto frontier."*
 
 ---
 
-### Slide 9: Platform & Portability Architecture
+### Slide 10: Platform & Portability Architecture
 * **Interactive MATLAB Desktop GUI:** Built-in `gui_dashboard` provides one-click execution and live plotting.
 * **MATLAB Online Ready:** Works in web browser with a single git clone command.
 * **Zero Toolbox Dependencies:** All modulators, demodulators, and mathematical solvers were custom-engineered in native MATLAB code.
@@ -134,7 +170,7 @@ P_i^{\ast} = \max\left(0, \; \mu - \frac{\sigma_n^2}{\sigma_i^2}\right)
 
 ---
 
-### Slide 10: Summary & Conclusions
+### Slide 11: Summary & Conclusions
 1. Solved the multiplexing optimization challenge for fixed 2x2 MIMO systems in 5G links.
 2. SVD Water-Filling provides up to **48.5% capacity gain** over unoptimized transmission in correlated fading.
 3. Adaptive mode switching achieves the maximum goodput envelope across all SNR regimes.
