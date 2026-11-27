@@ -99,12 +99,15 @@ P_i^{\ast} = \max\left(0, \; \mu - \frac{\sigma_n^2}{\sigma_i^2}\right)
 
 ### Slide 7: Master Benchmark Results & Quantitative Metrics
 
-| Scheme | Diversity Order (d) | Multiplexing Gain (r) | BER @ 10 dB | Effective Goodput @ 10 dB | Ergodic Cap @ 20 dB (ρ=0.3) |
-|---|:---:|:---:|:---:|:---:|:---:|
-| **Alamouti STBC** | 4 | 1 | 9.50e-04 | 1.70 bps/Hz | 5.90 bps/Hz |
-| **Linear MMSE** | 1 | 2 | 5.00e-01 | 0.00 bps/Hz | 10.91 bps/Hz |
-| **MMSE-SIC** | 2 | 2 | 5.01e-01 | 0.00 bps/Hz | 10.91 bps/Hz |
-| **Adaptive SVD-WF** | Adaptive | Adaptive | Adaptive | **1.70 bps/Hz** | **11.07 bps/Hz** |
+| Scheme | Diversity Order (d) | Multiplexing Gain (r) | BER @ 10 dB | BER @ 20 dB | Effective Goodput @ 10 dB | Ergodic Cap @ 20 dB (ρ=0.3) |
+|---|:---:|:---:|:---:|:---:|:---:|:---:|
+| **Alamouti STBC** | 4 | 1 | 1.72e-03 | 0.00e+00 | 1.68 bps/Hz | 5.83 bps/Hz |
+| **Linear ZF** | 1 | 2 | 9.17e-02 | 1.25e-02 | 0.37 bps/Hz | 11.01 bps/Hz |
+| **Linear MMSE** | 1 | 2 | 6.35e-02 | 8.02e-03 | 0.37 bps/Hz | 11.01 bps/Hz |
+| **MMSE-SIC** | 2 | 2 | 4.83e-02 | 4.34e-03 | 0.37 bps/Hz | 11.01 bps/Hz |
+| **Adaptive SVD-WF** | Adaptive | Adaptive | Adaptive | Adaptive | **1.68 bps/Hz** | **11.04 bps/Hz** |
+
+* **MIMO Scaling (`1x1` → `2x2` → `4x4` → `8x8`):** Ergodic capacity scales linearly (`5.92` → `11.10` → `21.66` → `42.96 bps/Hz` at 20 dB), while median $\kappa(\mathbf{H})$ grows from `1.00` to `20.64`, proving why Water-Filling and Adaptive Rank Switching become even more critical in larger arrays.
 
 * **Speaker Note:**  
   *"Here are the numerical results from our simulation suite. Notice how Adaptive MIMO achieves the high reliability of Alamouti at 10 dB while achieving maximum 11.07 bps/Hz capacity at high SNR."*

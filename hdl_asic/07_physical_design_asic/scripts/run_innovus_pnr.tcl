@@ -54,6 +54,31 @@ floorPlan -site standard_site \
 set coreBox [dbGet top.fPlan.coreBox]
 puts "Core Boundary Dimensions: $coreBox"
 
+# 2b. Partitioned Subsystem Placement Fences (Matching floorplan_spec.md)
+puts "--- Creating Quadrant Placement Fences for Partitioned Subsystems ---"
+# Quadrant 1 (North-West): DFE & Host Bus Interface
+createInstGroup grp_quad1_interfaces -fence {35.0 800.0 800.0 1565.0}
+catch {addInstToInstGroup grp_quad1_interfaces u_interconnect}
+catch {addInstToInstGroup grp_quad1_interfaces u_axi_slave}
+
+# Quadrant 2 (North-East): Transmit STBC Encoder & Water-Filling Power Allocator
+createInstGroup grp_quad2_transmitter -fence {800.0 800.0 1565.0 1565.0}
+catch {addInstToInstGroup grp_quad2_transmitter u_alamouti_encoder}
+catch {addInstToInstGroup grp_quad2_transmitter u_water_filling}
+catch {addInstToInstGroup grp_quad2_transmitter u_sq1}
+catch {addInstToInstGroup grp_quad2_transmitter u_sq2}
+
+# Quadrant 3 (South-West): Cognitive Channel Estimator & Adaptive Rank Controller
+createInstGroup grp_quad3_controller -fence {35.0 35.0 800.0 800.0}
+catch {addInstToInstGroup grp_quad3_controller u_adaptive_controller}
+
+# Quadrant 4 (South-East): Advanced Receiver (Alamouti MRC, MMSE-SIC Detector & Slicers)
+createInstGroup grp_quad4_receiver -fence {800.0 35.0 1565.0 800.0}
+catch {addInstToInstGroup grp_quad4_receiver u_alamouti_combiner}
+catch {addInstToInstGroup grp_quad4_receiver u_mmse_sic}
+catch {addInstToInstGroup grp_quad4_receiver u_slicer_stream1}
+catch {addInstToInstGroup grp_quad4_receiver u_slicer_stream2}
+
 puts "======================================================================"
 puts " STEP 3: POWER PLANNING (RINGS, STRIPES, RAILS & WELL-TAPS)           "
 puts "======================================================================"

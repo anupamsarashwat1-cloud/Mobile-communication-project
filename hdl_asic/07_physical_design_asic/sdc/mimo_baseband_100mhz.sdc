@@ -75,7 +75,10 @@ set_max_capacitance 0.200 [current_design]
 # ------------------------------------------------------------------------------
 # 6. Timing Exceptions: False Paths & Multicycle Paths
 # ------------------------------------------------------------------------------
-# Asynchronous active-low reset signal is unconstrained for synchronous datapath
+# Reset signals are unconstrained for datapath paths
+if {[sizeof_collection [get_ports -quiet rst]] > 0} {
+    set_false_path -from [get_ports rst]
+}
 if {[sizeof_collection [get_ports -quiet rst_n]] > 0} {
     set_false_path -from [get_ports rst_n]
 }

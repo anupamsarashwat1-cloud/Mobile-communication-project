@@ -52,7 +52,7 @@ This repository provides an end-to-end mathematical, algorithmic, and simulation
      [Diversity Mode (STBC)]                                                                     [Spatial Multiplexing]
      • Alamouti 2x2 Encoding                                                                     • SVD Precoding (V)
      • Diversity Order d = 4                                                                     • Water-Filling Power P*
-     • Active when kappa(H) > 4.5 or SNR < 8dB                                                   • Active when kappa(H) <= 4.5 & SNR >= 8dB
+     • Active when kappa(H) > 4.5 or SNR < 15dB                                                  • Active when kappa(H) <= 4.5 & SNR >= 15dB
                │                                                                                            │
                └───────────────────────────────────────────┬────────────────────────────────────────────────┘
                                                            ▼
@@ -100,7 +100,7 @@ P_i^{\ast} = \max\left(0, \; \mu - \frac{\sigma_n^2}{\sigma_i^2}\right)
 ### 3.2 Dynamic Rank Adaptation Rule
 
 ```math
-\text{Mode} = \begin{cases} \text{Alamouti STBC (Diversity Mode)}, & \text{if } \gamma < 8.0\text{ dB} \text{ or } \kappa(\mathbf{H}) > 4.5 \\ \text{Spatial Multiplexing (SVD-WF Mode)}, & \text{if } \gamma \ge 8.0\text{ dB} \text{ and } \kappa(\mathbf{H}) \le 4.5 \end{cases}
+\text{Mode} = \begin{cases} \text{Alamouti STBC (Diversity Mode)}, & \text{if } \gamma < 15.0\text{ dB} \text{ or } \kappa(\mathbf{H}) > 4.5 \\ \text{Spatial Multiplexing (SVD-WF Mode)}, & \text{if } \gamma \ge 15.0\text{ dB} \text{ and } \kappa(\mathbf{H}) \le 4.5 \end{cases}
 ```
 
 ### 3.3 Zheng-Tse Diversity-Multiplexing Trade-off (DMT)
@@ -113,14 +113,27 @@ d^{\ast}(r) = (N_t - r)(N_r - r) = (2-r)^2, \quad 0 \le r \le \min(N_t, N_r)
 
 ## 4. Key Quantitative Results
 
-| Operating Scheme | Diversity Order (d) | Multiplexing Gain (r) | BER @ 10 dB | Effective Goodput @ 10 dB | Ergodic Capacity @ 20 dB (ρ=0.3) |
+### 4.1 Fixed 2×2 MIMO Transceiver Benchmark ($\rho = 0.3$, QPSK)
+
+| Operating Scheme | Diversity Order (d) | Multiplexing Gain (r) | BER @ 10 dB | BER @ 20 dB | Effective Goodput @ 10 dB | Ergodic Capacity @ 20 dB |
+|---|:---:|:---:|:---:|:---:|:---:|:---:|
+| **SISO Baseline (1x1)** | 1 | 1 | 2.64e-02 (@12dB) | 2.36e-03 | 1.00 bps/Hz | 5.92 bps/Hz |
+| **Alamouti STBC (2x2)** | 4 | 1 | 1.72e-03 | 0.00e+00 | 1.68 bps/Hz | 5.83 bps/Hz |
+| **Spatial Mux (Linear ZF)** | 1 | 2 | 9.17e-02 | 1.25e-02 | 0.37 bps/Hz | 11.01 bps/Hz |
+| **Spatial Mux (Linear MMSE)** | 1 | 2 | 6.35e-02 | 8.02e-03 | 0.37 bps/Hz | 11.01 bps/Hz |
+| **Spatial Mux (MMSE-SIC)** | 2 | 2 | 4.83e-02 | 4.34e-03 | 0.37 bps/Hz | 11.01 bps/Hz |
+| **Adaptive SVD-WF (Optimized)** | Adaptive | Adaptive | Adaptive | Adaptive | **1.68 bps/Hz** | **11.04 bps/Hz** |
+
+### 4.2 Impact of Scaling Fixed MIMO Dimensions (`1x1` vs `2x2` vs `4x4` vs `8x8`, $\rho = 0.3$)
+
+| MIMO Config | Median $\kappa(\mathbf{H})$ | MMSE BER @ 12 dB | MMSE BER @ 20 dB | Goodput @ 24 dB | SVD-WF Capacity @ 20 dB |
 |---|:---:|:---:|:---:|:---:|:---:|
-| **SISO Baseline (1x1)** | 1 | 1 | 2.30e-02 | 1.20 bps/Hz | 5.90 bps/Hz |
-| **Alamouti STBC (2x2)** | 4 | 1 | 9.50e-04 | 1.70 bps/Hz | 5.90 bps/Hz |
-| **Spatial Mux (Linear ZF)** | 1 | 2 | 5.00e-01 | 0.00 bps/Hz | 10.91 bps/Hz |
-| **Spatial Mux (Linear MMSE)** | 1 | 2 | 5.00e-01 | 0.00 bps/Hz | 10.91 bps/Hz |
-| **Spatial Mux (MMSE-SIC)** | 2 | 2 | 5.01e-01 | 0.00 bps/Hz | 10.91 bps/Hz |
-| **Adaptive SVD-WF (Optimized)** | Adaptive | Adaptive | Adaptive | **1.70 bps/Hz** | **11.07 bps/Hz** |
+| **1x1 (SISO)** | 1.00 | 2.64e-02 | 2.36e-03 | 1.92 bps/Hz | 5.92 bps/Hz |
+| **2x2 MIMO** | 3.22 | 4.24e-02 | 9.68e-03 | 3.56 bps/Hz | 11.10 bps/Hz |
+| **4x4 MIMO** | 8.61 | 4.61e-02 | 1.08e-02 | 5.84 bps/Hz | 21.66 bps/Hz |
+| **8x8 MIMO** | 20.64 | 4.67e-02 | 7.67e-03 | **7.20 bps/Hz** | **42.96 bps/Hz** |
+
+![MIMO Antenna Scaling Comparison](06_master_runner_and_benchmarks/figures/mimo_scaling_comparison.png)
 
 ---
 
@@ -240,16 +253,18 @@ You can run each stage independently and view real-time figures and console metr
   ![Simulink System Architecture](05_simulink_and_advanced_receivers/figures/simulink_model_overview.png)
   ![MMSE-SIC vs Linear Receivers](05_simulink_and_advanced_receivers/figures/sic_vs_linear_receivers_ber.png)
 
-#### Step 6: Master Benchmark Suite & Zheng-Tse DMT Bound
-* **Command**:
+#### Step 6: Master Benchmark Suite, Zheng-Tse DMT Bound & MIMO Scaling
+* **Commands**:
   ```matlab
   run('06_master_runner_and_benchmarks/main_benchmark_suite.m')
+  run('06_master_runner_and_benchmarks/mimo_scaling_comparison.m')
   ```
-* **Description**: Executes the unified testbench, computes the theoretical Zheng-Tse DMT bound $d^{\ast}(r) = (2-r)^2$, and exports the consolidated 4-panel executive dashboard.
+* **Description**: Executes the unified testbench, computes the theoretical Zheng-Tse DMT bound $d^{\ast}(r) = (2-r)^2$, evaluates scaling fixed MIMO from `1x1` up to `8x8`, and exports the consolidated 4-panel executive dashboards.
 * **Generated Visualizations**:
   
   ![Master Comprehensive Summary](06_master_runner_and_benchmarks/figures/master_comprehensive_summary.png)
   ![DMT Trade-off Curve](06_master_runner_and_benchmarks/figures/dmt_diversity_multiplexing_curve.png)
+  ![MIMO Antenna Scaling Comparison](06_master_runner_and_benchmarks/figures/mimo_scaling_comparison.png)
 
 #### ⚡ Live Waveforms, Constellation Scopes & Water-Filling Tank Visualizer
 * **Command**:

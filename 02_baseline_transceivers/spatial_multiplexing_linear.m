@@ -45,8 +45,8 @@ for s_idx = 1:length(snr_db_vec)
         rx_bits_zf = zeros(Nt, packet_len * k);
         rx_bits_mmse = zeros(Nt, packet_len * k);
         for tx = 1:Nt
-            rx_bits_zf(tx, :) = demodulate_qam(S_hat_zf(tx, :)', mod_order).';
-            rx_bits_mmse(tx, :) = demodulate_qam(S_hat_mmse(tx, :)', mod_order).';
+            rx_bits_zf(tx, :) = demodulate_qam(S_hat_zf(tx, :).', mod_order).';
+            rx_bits_mmse(tx, :) = demodulate_qam(S_hat_mmse(tx, :).', mod_order).';
         end
         
         err_zf = err_zf + sum(sum(tx_bits ~= rx_bits_zf));

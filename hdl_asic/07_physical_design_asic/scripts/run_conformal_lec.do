@@ -21,16 +21,27 @@ read library -statename STD_LIB \
 
 // Load Golden RTL
 read design \
-    ../../build/asic_rtl/alamouti_encoder.v \
-    ../../build/asic_rtl/alamouti_combiner.v \
-    ../../build/asic_rtl/cordic_2x2_svd.v \
-    ../../build/asic_rtl/water_filling_allocator.v \
-    ../../build/asic_rtl/adaptive_mode_fsm.v \
-    ../../build/asic_rtl/qam_slicer.v \
-    ../../build/asic_rtl/mmse_sic_core.v \
-    ../../build/asic_rtl/mimo_axi4_lite_slave.v \
-    ../../build/asic_rtl/mimo_axis_stream_adapter.v \
-    ../../build/asic_rtl/mimo_baseband_top.v \
+    ../../build_rtl/nfp_uminus_single.v \
+    ../../build_rtl/nfp_gain_pow2_single.v \
+    ../../build_rtl/nfp_relop_single.v \
+    ../../build_rtl/nfp_relop_single_block.v \
+    ../../build_rtl/nfp_relop_single_block1.v \
+    ../../build_rtl/nfp_relop_single_block2.v \
+    ../../build_rtl/nfp_add_single.v \
+    ../../build_rtl/nfp_sub_single.v \
+    ../../build_rtl/nfp_mul_single.v \
+    ../../build_rtl/nfp_div_single.v \
+    ../../build_rtl/nfp_recip_single.v \
+    ../../build_rtl/adaptive_controller_hw.v \
+    ../../build_rtl/alamouti_encoder_hw.v \
+    ../../build_rtl/alamouti_combiner_hw.v \
+    ../../build_rtl/water_filling_hw.v \
+    ../../build_rtl/qam_slicer_hw.v \
+    ../../build_rtl/mmse_sic_hw.v \
+    ../../01_interfaces_and_bus/mimo_axi4_lite_slave.v \
+    ../../01_interfaces_and_bus/mimo_axis_stream_adapter.v \
+    ../../01_interfaces_and_bus/mimo_interconnect_crossbar.v \
+    ../../06_top_integration/mimo_baseband_top.v \
     -golden -verilog -2001
 
 set root module mimo_baseband_top -golden

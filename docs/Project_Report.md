@@ -103,12 +103,24 @@ The table below summarizes the quantitative performance metrics obtained from Mo
 
 | Scheme | Diversity Order (d) | Multiplexing Gain (r) | BER @ 10 dB | BER @ 20 dB | Goodput @ 10 dB | Ergodic Cap @ 20 dB (ρ=0.3) |
 |---|:---:|:---:|:---:|:---:|:---:|:---:|
-| **SISO Baseline (1x1)** | 1 | 1 | 2.30e-02 | 2.10e-03 | 1.20 bps/Hz | 5.90 bps/Hz |
-| **Alamouti STBC (2x2)** | 4 | 1 | 9.50e-04 | < 1e-05 | 1.70 bps/Hz | 5.90 bps/Hz |
-| **Spatial Mux (Linear ZF)** | 1 | 2 | 5.00e-01 | 5.00e-01 | 0.00 bps/Hz | 10.91 bps/Hz |
-| **Spatial Mux (Linear MMSE)**| 1 | 2 | 5.00e-01 | 5.00e-01 | 0.00 bps/Hz | 10.91 bps/Hz |
-| **Spatial Mux (MMSE-SIC)** | 2 | 2 | 5.01e-01 | 5.00e-01 | 0.00 bps/Hz | 10.91 bps/Hz |
-| **Adaptive SVD-WF (Optimized)**| Adaptive | Adaptive | Adaptive | Adaptive | **1.70 bps/Hz** | **11.07 bps/Hz** |
+| **SISO Baseline (1x1)** | 1 | 1 | 2.64e-02 (@12dB) | 2.36e-03 | 1.00 bps/Hz | 5.92 bps/Hz |
+| **Alamouti STBC (2x2)** | 4 | 1 | 1.72e-03 | 0.00e+00 | 1.68 bps/Hz | 5.83 bps/Hz |
+| **Spatial Mux (Linear ZF)** | 1 | 2 | 9.17e-02 | 1.25e-02 | 0.37 bps/Hz | 11.01 bps/Hz |
+| **Spatial Mux (Linear MMSE)**| 1 | 2 | 6.35e-02 | 8.02e-03 | 0.37 bps/Hz | 11.01 bps/Hz |
+| **Spatial Mux (MMSE-SIC)** | 2 | 2 | 4.83e-02 | 4.34e-03 | 0.37 bps/Hz | 11.01 bps/Hz |
+| **Adaptive SVD-WF (Optimized)**| Adaptive | Adaptive | Adaptive | Adaptive | **1.68 bps/Hz** | **11.04 bps/Hz** |
+
+### 4.1.1 Impact of Scaling Fixed MIMO Dimensions (`1x1` vs `2x2` vs `4x4` vs `8x8`)
+To quantify how scaling the fixed antenna geometry impacts spectral efficiency, reliability, and channel conditioning under $\rho = 0.3$:
+
+| MIMO Config | Median $\kappa(\mathbf{H})$ | MMSE BER @ 12 dB | MMSE BER @ 20 dB | Goodput @ 24 dB | SVD-WF Capacity @ 20 dB |
+|---|:---:|:---:|:---:|:---:|:---:|
+| **1x1 (SISO)** | 1.00 | 2.64e-02 | 2.36e-03 | 1.92 bps/Hz | 5.92 bps/Hz |
+| **2x2 MIMO** | 3.22 | 4.24e-02 | 9.68e-03 | 3.56 bps/Hz | 11.10 bps/Hz |
+| **4x4 MIMO** | 8.61 | 4.61e-02 | 1.08e-02 | 5.84 bps/Hz | 21.66 bps/Hz |
+| **8x8 MIMO** | 20.64 | 4.67e-02 | 7.67e-03 | **7.20 bps/Hz** | **42.96 bps/Hz** |
+
+![MIMO Antenna Scaling Comparison](../06_master_runner_and_benchmarks/figures/mimo_scaling_comparison.png)
 
 ### 4.2 Waveform, Constellation & Physical Layer Diagnostics
 In addition to statistical BER sweeps, the framework provides real-time time-domain I/Q baseband waveforms, spatial fading envelopes, transmitter/receiver scatter constellations, and water-filling power tank levels:

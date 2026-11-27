@@ -115,7 +115,7 @@ for s_idx = 1:length(snr_vec)
         S_hat_sm = sqrt(2)*(W_mmse * Y_sm);
         rx_bits_sm = zeros(2, frame_len*k);
         for tx=1:2
-            rx_bits_sm(tx, :) = demodulate_qam(S_hat_sm(tx, :)', mod_order).';
+            rx_bits_sm(tx, :) = demodulate_qam(S_hat_sm(tx, :).', mod_order).';
         end
         is_sm_ok = (sum(sum(tx_bits_sm ~= rx_bits_sm)) == 0);
         if is_sm_ok, sm_ok = sm_ok + 1; end

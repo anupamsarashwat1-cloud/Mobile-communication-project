@@ -24,9 +24,9 @@ else
 end
 
 % Switching Decision Thresholds:
-% At low SNR (< 8 dB) or high condition number (kappa > 4.5),
-% spatial multiplexing suffers excessive error rate. Diversity mode achieves higher net goodput.
-snr_threshold_db = 8.0;
+% At low/moderate SNR (< 15 dB) or high condition number (kappa > 4.5),
+% spatial multiplexing suffers excessive frame error rate. Diversity mode achieves higher net goodput.
+snr_threshold_db = 15.0;
 kappa_threshold = 4.5;
 
 if (snr_db < snr_threshold_db) || (kappa > kappa_threshold)
